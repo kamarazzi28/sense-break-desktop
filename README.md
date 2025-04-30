@@ -1,93 +1,138 @@
-# sense-gym-nss
+# Sense Break (Vision & Hearing Trainer Microservices Application)
 
+## Projekt pro předmět B6B36NSS – Návrh softwarových systémů
 
+---
 
-## Getting started
+## 📌 Cíl projektu
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Cílem projektu je vytvořit desktopovou aplikaci pro trénink zraku a sluchu pro vývojáře a uživatele, kteří tráví dlouhý čas u počítače. Aplikace bude obsahovat cvičení jako např. sledování pohybující se tečky po různých trajektoriích a rozlišování zvukových signálů.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Projekt demonstruje použití mikroservisní architektury, základních návrhových vzorů a správného návrhu systému včetně dokumentace.
 
-## Add your files
+Projekt bude klást důraz na:
+- návrh architektury s oddělenými službami
+- jednoduché použití designových vzorů (např. komunikace mezi službami, autentizace)
+- verzování projektu v GitLabu
+- dokumentaci pomocí UML a specifikací požadavků
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+---
 
+## 👤 Tým
+
+- Jednotlivec: Kamilla Ishmukhammedova (@ishmukam)
+
+---
+
+## 🛠️ Technologie
+
+- **Java 17**, **Spring Boot** (REST služby)
+- **PostgreSQL** – pro ukládání uživatelů a výsledků cvičení
+- **JavaFX** nebo jiné jednoduché GUI (front-end desktop aplikace)
+- **RabbitMQ** – pro notifikace a asynchronní zpracování 
+- **GitLab CI/CD** – základní pipeline pro build/test
+
+---
+
+## 🏛️ Architektura
+
+- **Typ architektury:** Mikroservisní (oddělené backendové služby)
+- **Komunikace:** REST API mezi desktopovou aplikací a službami
+- **Komponenty:**
+  1. **User Service** – správa uživatelů, registrace, přihlášení
+  2. **Training Service** – logika zrakových a sluchových cvičení, ukládání výsledků
+  3. **Result Viewer (Desktop GUI)** – JavaFX aplikace pro vizuální a sluchové testy
+  4. **Notification Service** – připomenutí tréninku pomocí RabbitMQ
+
+---
+
+## ✨ Funkcionality
+
+- Registrace a přihlášení uživatelů
+- Spuštění tréninkových cvičení (sledování bodu, poslouchání tónů)
+- Vyhodnocení a uložení výsledků
+- Přehled historie a pokroku uživatele
+- Notifikace připomínající trénink
+
+---
+
+## 📝 Dokumentace
+
+- Funkční požadavky
+- Nefunkční požadavky (rychlost odezvy, jednoduchost použití)
+- Use-case scénáře
+- UML diagramy:
+  - Class Diagram (User, Session, Training)
+  - Component Diagram
+  - Sequence Diagram (registrace, spuštění cvičení)
+- Architektura systému a interakce mezi službami
+
+---
+
+## ⚙️ Setup projektu
+
+1. **Naklonuj repozitář:**
+   ```bash
+   git clone git@gitlab.fel.cvut.cz:ishmukam/sensebreak.git
+   cd sensebreak
+   ```
+2. **Spusť backendové služby:**
+   ```bash
+   cd user-service
+   mvn spring-boot:run
+   ```
+   ```bash
+   cd training-service
+   mvn spring-boot:run
+   ```
+3. **Spusť desktopovou aplikaci:**
+   ```bash
+   cd desktop-gui
+   mvn javafx:run
+   ```
+
+---
+
+## ✅ TODO seznam
+
+### Krátkodobé úkoly
+- [x] Zvolit název projektu a nastavit GitLab
+- [x] Definovat cíle projektu
+- [x] Sepsat základní funkční a nefunkční požadavky
+- [ ] Navrhnout hlavní Use Cases
+- [ ] Vytvořit první verze UML diagramů
+- [ ] Připravit prezentaci pro Milník 1
+- [ ] Vytvořit adresářovou strukturu a inicializační soubory pro každou službu
+- [ ] Navrhnout základní API pro User Service a Training Service
+- [ ] Spustit PostgreSQL databázi a připravit schéma tabulek
+
+### Dlouhodobé úkoly
+- [ ] Implementovat User Service
+- [ ] Implementovat Training Service
+- [ ] Navrhnout a vytvořit JavaFX GUI
+- [ ] Integrovat REST komunikaci mezi GUI a službami
+- [ ] Otestovat a ladit aplikaci
+- [ ] Dokončit dokumentaci a diagramy
+- [ ] Připravit finální prezentaci a odevzdání
+
+---
+
+## 📂 Struktura repozitáře
+
+```plaintext
+sensebreak/
+├── user-service/
+├── training-service/
+├── desktop-gui/
+├── docs/
+└── README.md
 ```
-cd existing_repo
-git remote add origin https://gitlab.fel.cvut.cz/ishmukam/sense-gym-nss.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+---
 
-- [ ] [Set up project integrations](https://gitlab.fel.cvut.cz/ishmukam/sense-gym-nss/-/settings/integrations)
+## 📜 Licence
 
-## Collaborate with your team
+Projekt je určen pouze pro studijní účely v rámci kurzu B6B36NSS na FEL ČVUT.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+---
 
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.

@@ -18,9 +18,9 @@ Projekt bude klást důraz na:
 
 ---
 
-## 👤 Tým
+## 👤 Autorka
 
-- Jednotlivec: Kamilla Ishmukhammedova (@ishmukam)
+- Kamilla Ishmukhammedova (@ishmukam)
 
 ---
 
@@ -29,7 +29,7 @@ Projekt bude klást důraz na:
 - **Java 17**, **Spring Boot** (REST služby)
 - **PostgreSQL** – pro ukládání uživatelů a výsledků cvičení
 - **JavaFX** nebo jiné jednoduché GUI (front-end desktop aplikace)
-- **RabbitMQ** – pro notifikace a asynchronní zpracování 
+- **RabbitMQ** – pro notifikace a asynchronní zpracování
 - **GitLab CI/CD** – základní pipeline pro build/test
 
 ---
@@ -41,8 +41,8 @@ Projekt bude klást důraz na:
 - **Komponenty:**
   1. **User Service** – správa uživatelů, registrace, přihlášení
   2. **Training Service** – logika zrakových a sluchových cvičení, ukládání výsledků
-  3. **Result Viewer (Desktop GUI)** – JavaFX aplikace pro vizuální a sluchové testy
-  4. **Notification Service** – připomenutí tréninku pomocí RabbitMQ
+  3. **Notification Service** – připomenutí tréninku pomocí RabbitMQ
+  4. **Result Viewer (Desktop GUI)** – JavaFX aplikace pro vizuální a sluchové testy
 
 ---
 
@@ -69,7 +69,7 @@ Projekt bude klást důraz na:
 
 ---
 
-## ⚙️ Setup projektu
+## ⚙️ Setup projektu (bez Dockeru)
 
 1. **Naklonuj repozitář:**
    ```bash
@@ -83,6 +83,10 @@ Projekt bude klást důraz na:
    ```
    ```bash
    cd training-service
+   mvn spring-boot:run
+   ```
+   ```bash
+   cd notification-service
    mvn spring-boot:run
    ```
 3. **Spusť desktopovou aplikaci:**
@@ -109,6 +113,7 @@ Projekt bude klást důraz na:
 ### Dlouhodobé úkoly
 - [ ] Implementovat User Service
 - [ ] Implementovat Training Service
+- [ ] Implementovat Notification Service
 - [ ] Navrhnout a vytvořit JavaFX GUI
 - [ ] Integrovat REST komunikaci mezi GUI a službami
 - [ ] Otestovat a ladit aplikaci
@@ -123,6 +128,7 @@ Projekt bude klást důraz na:
 sensebreak/
 ├── user-service/
 ├── training-service/
+├── notification-service/
 ├── desktop-gui/
 ├── docs/
 └── README.md
@@ -135,4 +141,3 @@ sensebreak/
 Projekt je určen pouze pro studijní účely v rámci kurzu B6B36NSS na FEL ČVUT.
 
 ---
-

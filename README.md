@@ -6,9 +6,11 @@
 
 ## 📌 Cíl projektu
 
-Cílem projektu je vytvořit desktopovou aplikaci pro trénink zraku a sluchu pro vývojáře a uživatele, kteří tráví dlouhý čas u počítače. Aplikace bude obsahovat cvičení jako např. sledování pohybující se tečky po různých trajektoriích a rozlišování zvukových signálů.
+Cílem projektu je vytvořit desktopovou aplikaci pro trénink zraku a sluchu pro vývojáře a uživatele, kteří tráví dlouhý čas u počítače. Aplikace nabízí jednoduchá cvičení, jako je sledování pohybující se tečky nebo rozlišování zvukových tónů, s cílem předejít přetížení smyslového vnímání.
 
-Projekt demonstruje použití mikroservisní architektury, základních návrhových vzorů a správného návrhu systému včetně dokumentace.
+Projekt je postaven na architektuře modulárního monolitu, který zahrnuje oddělené moduly pro správu uživatelů, tréninkovou logiku a autentizaci. K tomu je připojena samostatná mikroslužba pro notifikace, která zpracovává asynchronní události pomocí Kafka.
+Projekt demonstruje správné oddělení zodpovědností, základní návrhové vzory, dokumentaci pomocí UML a důraz na rozšiřitelnost a čistý návrh systému.
+
 
 Projekt bude klást důraz na:
 - návrh architektury s oddělenými službami
@@ -28,21 +30,27 @@ Projekt bude klást důraz na:
 
 - **Java 17**, **Spring Boot** (REST služby)
 - **PostgreSQL** – pro ukládání uživatelů a výsledků cvičení
-- **JavaFX** nebo jiné jednoduché GUI (front-end desktop aplikace)
-- **RabbitMQ** – pro notifikace a asynchronní zpracování
+- **JavaFX** GUI (front-end desktop aplikace)
+- **Kafka** – pro notifikace a asynchronní zpracování
+- **Redis** – cache vrstva pro urychlení přístupu k často čteným datům
 - **GitLab CI/CD** – základní pipeline pro build/test
 
 ---
 
 ## 🏛️ Architektura
 
-- **Typ architektury:** Mikroservisní (oddělené backendové služby)
-- **Komunikace:** REST API mezi desktopovou aplikací a službami
+- **Typ architektury:** Modulární monolit + 1 samostatná mikroslužba
+- **Komunikace:**
+    - Desktopová aplikace ↔ Backend Service: REST API
+    - Backend Service ↔ Notification Service: asynchronně přes Apache Kafka
+
 - **Komponenty:**
-  1. **User Service** – správa uživatelů, registrace, přihlášení
-  2. **Training Service** – logika zrakových a sluchových cvičení, ukládání výsledků
-  3. **Notification Service** – připomenutí tréninku pomocí RabbitMQ
-  4. **Result Viewer (Desktop GUI)** – JavaFX aplikace pro vizuální a sluchové testy
+    1. **Backend Service** – modulární aplikace obsahující:
+        - **User modul** – registrace, přihlášení, profil
+        - **Training modul** – spuštění a uložení tréninků
+        - **Auth Middleware** – kontrola oprávnění a validace tokenů
+    2. **Notification Service** – samostatná mikroslužba zpracovávající zprávy z Kafka a odesílající notifikace
+    3. **Desktop GUI (JavaFX)** – desktopová aplikace pro uživatele
 
 ---
 
@@ -74,51 +82,49 @@ Projekt bude klást důraz na:
 1. **Naklonuj repozitář:**
    ```bash
    git clone git@gitlab.fel.cvut.cz:ishmukam/sensebreak.git
-   cd sensebreak
+   cd sensebreak  
    ```
-2. **Spusť backendové služby:**
+2. **Spusť hlavní backend (modulární monolit):**
    ```bash
-   cd user-service
+   cd backend service
    mvn spring-boot:run
    ```
-   ```bash
-   cd training-service
-   mvn spring-boot:run
-   ```
+3. **Spusť notifikační mikroslužbu:**
    ```bash
    cd notification-service
    mvn spring-boot:run
    ```
-3. **Spusť desktopovou aplikaci:**
+4. **Spusť desktopovou aplikaci (JavaFX):**
    ```bash
    cd desktop-gui
    mvn javafx:run
    ```
-
 ---
 
 ## ✅ TODO seznam
 
-### Krátkodobé úkoly
+### 🟢 Krátkodobé úkoly
 - [x] Zvolit název projektu a nastavit GitLab
-- [x] Definovat cíle projektu
-- [x] Sepsat základní funkční a nefunkční požadavky
-- [ ] Navrhnout hlavní Use Cases
-- [ ] Vytvořit první verze UML diagramů
-- [ ] Připravit prezentaci pro Milník 1
-- [ ] Vytvořit adresářovou strukturu a inicializační soubory pro každou službu
-- [ ] Navrhnout základní API pro User Service a Training Service
-- [ ] Spustit PostgreSQL databázi a připravit schéma tabulek
+- [x] Definovat cíle projektu a architekturu (modulární backend + mikroslužba)
+- [x] Sepsat funkční a nefunkční požadavky
+- [x] Navrhnout hlavní Use Case scénáře
+- [x] Vytvořit první verze UML diagramů (Use Case, Class, Component, Sequence)
+- [x] Připravit prezentaci pro Milník 1
+- [x] Vytvořit adresářovou strukturu a inicializační soubory pro backend, GUI a notifikace
+- [x] Navrhnout základní REST API pro User modul a Training modul
+- [x] Spustit PostgreSQL a Kafka, připravit schéma tabulek
 
-### Dlouhodobé úkoly
-- [ ] Implementovat User Service
-- [ ] Implementovat Training Service
-- [ ] Implementovat Notification Service
-- [ ] Navrhnout a vytvořit JavaFX GUI
-- [ ] Integrovat REST komunikaci mezi GUI a službami
-- [ ] Otestovat a ladit aplikaci
-- [ ] Dokončit dokumentaci a diagramy
-- [ ] Připravit finální prezentaci a odevzdání
+### 🧩 Dlouhodobé úkoly
+- [ ] Implementovat User modul (registrace, přihlášení, profil)
+- [ ] Implementovat Training modul (spuštění tréninku, uložení výsledků)
+- [ ] Integrovat Auth Middleware (ověření tokenu, role)
+- [ ] Implementovat Notification Service (Kafka listener, odesílání notifikací)
+- [ ] Navrhnout a vytvořit JavaFX GUI (volba cvičení, zobrazení výsledků)
+- [ ] Propojit REST komunikaci mezi GUI a backendem
+- [ ] Pokrýt API testy (unit + integrační)
+- [ ] Dokončit dokumentaci, aktualizovat diagramy a README
+- [ ] Připravit finální prezentaci a odevzdání projektu
+
 
 ---
 
@@ -126,14 +132,23 @@ Projekt bude klást důraz na:
 
 ```plaintext
 sensebreak/
-├── user-service/
-├── training-service/
-├── notification-service/
-├── desktop-gui/
-├── docs/
-└── README.md
+├── backend-service/         # Modulární backend: User modul, Training modul, Auth Middleware
+│   ├── src/
+│   ├── pom.xml
+│   └── ...
+├── notification-service/    # Samostatná mikroslužba pro notifikace (Kafka listener)
+│   ├── src/
+│   ├── pom.xml
+│   └── ...
+├── desktop-gui/             # JavaFX desktopová aplikace
+│   ├── src/
+│   ├── pom.xml
+│   └── ...
+├── docs/                    # Dokumentace, UML diagramy, specifikace
+│   ├── diagrams/
+│   └── use-cases.md
+└── README.md                # Hlavní popis projektu
 ```
-
 ---
 
 ## 📜 Licence

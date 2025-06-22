@@ -14,10 +14,11 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()  // ⬅ povolit login/registraci
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/training/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults()); // základní ochrana pro ostatní (můžeš změnit)
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

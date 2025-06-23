@@ -31,4 +31,15 @@ public class UserProgress {
     private int streakLongest;
 
     private int relaxationMinutes;
+
+    @Column(nullable = false, columnDefinition = "integer default 0")
+    private int visionTrainings;
+
+    @Column(nullable = false, columnDefinition = "integer default 0")
+    private int hearingTrainings;
+
+    @Column(nullable = false, columnDefinition = "integer default 0")
+    private int totalTrainings;
+
+
 }

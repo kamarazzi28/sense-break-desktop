@@ -8,9 +8,12 @@ import sensebreak.backendservice.user.dto.UserLoginRequest;
 import sensebreak.backendservice.user.dto.UserRegisterRequest;
 import sensebreak.backendservice.user.dto.UserResponse;
 import sensebreak.backendservice.user.entity.User;
+import sensebreak.backendservice.user.entity.UserProgress;
+import sensebreak.backendservice.user.repository.UserProgressRepository;
 import sensebreak.backendservice.user.repository.UserRepository;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -18,6 +21,7 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserProgressRepository userProgressRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
@@ -34,16 +38,21 @@ public class UserService {
 
         User saved = userRepository.save(user);
 
+        UserProgress progress = UserProgress.builder()
+                .user(saved)
+                .lastActive(LocalDate.now().minusDays(1))
+                .streakCurrent(0)
+                .streakLongest(0)
+                .relaxationMinutes(0)
+                .build();
+
+        userProgressRepository.save(progress);
+
         return UserResponse.builder()
                 .id(saved.getId())
                 .username(saved.getUsername())
                 .email(saved.getEmail())
                 .build();
-    }
-
-    public User getById(UUID id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
     public UserResponse login(UserLoginRequest request) {
@@ -63,5 +72,17 @@ public class UserService {
                 .email(user.getEmail())
                 .build();
     }
+
+    public User validateLogin(UserLoginRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Invalid email or password");
+        }
+
+        return user;
+    }
+
 
 }

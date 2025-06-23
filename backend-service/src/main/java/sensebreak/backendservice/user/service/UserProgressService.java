@@ -2,7 +2,7 @@ package sensebreak.backendservice.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import sensebreak.backendservice.training.entity.TrainingType;
 import sensebreak.backendservice.user.entity.User;
 import sensebreak.backendservice.user.entity.UserProgress;
 import sensebreak.backendservice.user.repository.UserProgressRepository;
@@ -15,11 +15,7 @@ public class UserProgressService {
 
     private final UserProgressRepository progressRepository;
 
-    @Transactional
-    public void onTrainingStarted(User user) {
-        UserProgress progress = progressRepository.findById(user.getId())
-                .orElseGet(() -> createNewProgress(user));
-
+    private void updateStreakIfNeeded(UserProgress progress) {
         LocalDate today = LocalDate.now();
         LocalDate lastActive = progress.getLastActive();
 
@@ -36,9 +32,32 @@ public class UserProgressService {
 
             progress.setLastActive(today);
         }
+    }
 
+    public void onTrainingStarted(User user) {
+        UserProgress progress = progressRepository.findById(user.getId())
+                .orElseGet(() -> createNewProgress(user));
+
+        updateStreakIfNeeded(progress);
         progressRepository.save(progress);
     }
+
+    public void onTrainingFinished(User user, TrainingType type) {
+        UserProgress progress = progressRepository.findById(user.getId())
+                .orElseGet(() -> createNewProgress(user));
+        updateStreakIfNeeded(progress);
+
+        if (type == TrainingType.VISION) {
+            progress.setVisionTrainings(progress.getVisionTrainings() + 1);
+        } else if (type == TrainingType.HEARING) {
+            progress.setHearingTrainings(progress.getHearingTrainings() + 1);
+        }
+        progress.setTotalTrainings(progress.getTotalTrainings() + 1);
+
+        progressRepository.save(progress);
+
+    }
+
 
     public void addRelaxationMinutes(User user, int minutes) {
         UserProgress progress = progressRepository.findById(user.getId())

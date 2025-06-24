@@ -1,4 +1,4 @@
-# Sense Break (Vision & Hearing Trainer Microservices Application)
+# Sense Break (Vision & Hearing Trainer)
 
 ## Projekt pro předmět B6B36NSS – Návrh softwarových systémů
 

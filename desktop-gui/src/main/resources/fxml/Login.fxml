@@ -21,7 +21,7 @@
             <Label text="Hello again!" styleClass="heading"/>
             <Label text="Daily practice makes perfect — keep going!" styleClass="auth-subtitle"/>
 
-            <VBox spacing="10" maxWidth="280">
+            <VBox spacing="5" maxWidth="280">
                 <TextField fx:id="emailField" styleClass="text-field"  promptText="Enter your email"/>
                 <Label fx:id="emailError" styleClass="input-error-text"/>
 
@@ -29,7 +29,7 @@
                 <Label fx:id="passwordError" styleClass="input-error-text"/>
 
                 <HBox alignment="CENTER_RIGHT">
-                    <Hyperlink fx:id="recoveryLink" text="Recovery password" styleClass="link"/>
+                    <Hyperlink text="Recovery password" styleClass="link"/>
                 </HBox>
 
                 <Button fx:id="loginButton" text="Login" maxWidth="Infinity" styleClass="button-purple" onAction="#handleLogin"/>
@@ -39,7 +39,7 @@
         </VBox>
 
         <!-- Right block -->
-        <VBox fx:id="rightPane" alignment="CENTER" prefWidth="400">
+        <VBox alignment="CENTER" prefWidth="400">
             <ImageView fx:id="illustration" fitWidth="400" preserveRatio="true"/>
         </VBox>
 

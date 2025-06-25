@@ -14,12 +14,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-            Scene scene = new Scene(root, 1200, 700);
+            Scene scene = new Scene(root, 1300, 900);
             scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo/sb_logo.png")));
 
 
-            primaryStage.setTitle("Sense Break — Login");
+            primaryStage.setTitle("Sense Break");
             primaryStage.setScene(scene);
             primaryStage.show();
             root.requestFocus();

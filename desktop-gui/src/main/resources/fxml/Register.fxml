@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.RegisterController"
+            prefWidth="960" prefHeight="600"
+            styleClass="auth-page">
+
+    <HBox alignment="CENTER" spacing="100" AnchorPane.topAnchor="30" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="30">
+        <!-- Left block -->
+        <VBox fx:id="leftPane" alignment="CENTER" spacing="10"
+              prefWidth="400" styleClass="auth-left"
+              prefHeight="650"
+              minHeight="650"
+              maxHeight="650">
+
+            <ImageView fx:id="logo" fitWidth="50" fitHeight="50" preserveRatio="true"/>
+            <Label text="Let’s get started!" styleClass="heading"/>
+            <Label text="It only takes a minute to join" styleClass="auth-subtitle"/>
+
+            <VBox spacing="5" maxWidth="280">
+                <TextField fx:id="usernameField"  styleClass="text-field" promptText="Enter your name"/>
+                <Label fx:id="nameError" styleClass="input-error-text"/>
+
+                <TextField fx:id="emailField" styleClass="text-field" promptText="Enter your email"/>
+                <Label fx:id="emailError" styleClass="input-error-text"/>
+
+                <PasswordField fx:id="passwordField" styleClass="password-field" promptText="Password"/>
+                <Label fx:id="passwordError" styleClass="input-error-text"/>
+
+                <PasswordField fx:id="confirmPasswordField" styleClass="password-field" promptText="Confirm Password"/>
+                <Label fx:id="confirmPasswordError" styleClass="input-error-text"/>
+
+                <Button fx:id="registerButton" text="Sign up" maxWidth="Infinity" styleClass="button-orange" onAction="#handleRegister"/>
+            </VBox>
+
+            <Label text="Joined before?" styleClass="or-text"/>
+            <Hyperlink text="Login" onAction="#goToLogin" styleClass="link"/>
+        </VBox>
+
+        <!-- Right block -->
+        <VBox alignment="CENTER">
+            <ImageView fx:id="illustration" fitWidth="400" preserveRatio="true"/>
+        </VBox>
+    </HBox>
+</AnchorPane>

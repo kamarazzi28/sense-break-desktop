@@ -33,11 +33,26 @@
     -fx-alignment: center;
     -fx-background-color: #7b3ff2;
     -fx-padding: 10 14 10 14;
-
 }
 
 .button-purple:hover {
     -fx-background-color: #6b34d4;
+}
+
+.button-orange {
+    -fx-pref-height: 45;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 14;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-background-color: #FEA329;
+    -fx-padding: 10 14 10 14;
+}
+
+.button-orange:hover {
+    -fx-background-color: #e8951b;
 }
 
 .text-field, .password-field {

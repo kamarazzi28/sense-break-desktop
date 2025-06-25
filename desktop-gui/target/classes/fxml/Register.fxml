@@ -24,7 +24,7 @@
 
             <VBox spacing="5" maxWidth="280">
                 <TextField fx:id="usernameField"  styleClass="text-field" promptText="Enter your name"/>
-                <Label fx:id="nameError" styleClass="input-error-text"/>
+                <Label fx:id="usernameError" styleClass="input-error-text"/>
 
                 <TextField fx:id="emailField" styleClass="text-field" promptText="Enter your email"/>
                 <Label fx:id="emailError" styleClass="input-error-text"/>

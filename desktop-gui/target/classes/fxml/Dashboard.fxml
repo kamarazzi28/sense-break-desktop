@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.DashboardController">
+
+    <center>
+        <HBox spacing="30" style="-fx-padding: 40;">
+            <!-- SIDEBAR -->
+            <VBox spacing="10" styleClass="sidebar" prefWidth="250">
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <ImageView fx:id="logo" fitWidth="40" fitHeight="40"/>
+                    <Label text="Sense Break" styleClass="sidebar-title"/>
+                </HBox>
+
+                <VBox spacing="10" fx:id="navButtons" styleClass="sidebar-buttons">
+                    <Button fx:id="dashboardBtn" maxWidth="Infinity" text="Dashboard"/>
+                    <Button fx:id="visionBtn" maxWidth="Infinity" text="Vision"/>
+                    <Button fx:id="hearingBtn" maxWidth="Infinity" text="Hearing"/>
+                    <Button fx:id="progressBtn" maxWidth="Infinity" text="Progress"/>
+                    <Button fx:id="notificationsBtn" maxWidth="Infinity" text="Notifications"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <VBox fx:id="settingsSection" styleClass="sidebar-settings">
+                    <Button fx:id="settingsBtn" maxWidth="Infinity" text="Settings"/>
+                </VBox>
+            </VBox>
+
+            <!-- MAIN CONTENT -->
+            <VBox fx:id="mainContent" spacing="30">
+                <VBox>
+                    <Label fx:id="greetingLabel" styleClass="header-title"/>
+                    <Label fx:id="dateLabel" styleClass="header-date"/>
+                </VBox>
+
+                <HBox spacing="20">
+                    <VBox.margin>
+                        <Insets top="10"/>
+                    </VBox.margin>
+
+                    <StackPane styleClass="image-card-large" maxHeight="180" prefHeight="180" minHeight="180">
+                        <VBox spacing="10">
+                            <Label text="It’s Training Time" styleClass="card-text-h3"/>
+                            <Label text="Keep going to build a healthy habit!" styleClass="card-text-p" wrapText="true"/>
+                            <Button fx:id="startTrainingBtn" text="Start Today’s Session" maxWidth="200" styleClass="button-purple"/>
+                        </VBox>
+
+                        <ImageView fx:id="girlImage"
+                                   fitHeight="230"
+                                   preserveRatio="true"
+                                   StackPane.alignment="BOTTOM_RIGHT"
+                                   style="-fx-translate-y: 20; -fx-translate-x: 0;"/>
+                    </StackPane>
+
+                    <VBox spacing="20" styleClass="streak-card">
+                        <ImageView fx:id="fireIcon" fitWidth="50" fitHeight="60"/>
+                        <Label fx:id="streakTitle" text="0-day streak!" styleClass="card-text-h3"/>
+                    </VBox>
+                </HBox>
+
+                <Label text="Choose training" styleClass="section-title"/>
+
+                <HBox spacing="20">
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Vision" styleClass="card-text-h3"/>
+                        <Label text="Focus tracking and reaction speed" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="visionStartBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                    </VBox>
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Hearing" styleClass="card-text-h3"/>
+                        <Label text="Improve tone recognition and precision" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="hearingStartBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

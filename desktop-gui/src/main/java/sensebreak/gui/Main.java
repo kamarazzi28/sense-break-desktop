@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
             Scene scene = new Scene(root, 1300, 900);
             scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo/sb_logo.png")));

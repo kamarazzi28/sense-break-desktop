@@ -81,37 +81,110 @@
     -fx-font-size: 14;
 }
 
-.dashboard-root {
+
+
+
+
+
+
+
+
+
+
+
+.root {
     -fx-background-color: linear-gradient(to bottom, #e4cfff, #ffd8c3);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-spacing: 30px;
     -fx-padding: 30px;
+    -fx-background-radius: 12;
 }
 
-.dashboard-heading {
-    -fx-font-size: 26px;
+.sidebar-title {
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
+    -fx-text-fill: #1C1B1F;
 }
 
-.dashboard-subtext {
+.sidebar-buttons .button,
+.sidebar-settings .button {
     -fx-font-size: 16px;
-    -fx-text-fill: #5e5e5e;
+    -fx-font-weight: bold;
+    -fx-text-fill: #625B71;
+    -fx-background-color: transparent;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 14;
 }
 
-.dashboard-card {
+.sidebar-buttons .button:hover,
+.sidebar-settings .button:hover {
+    -fx-background-color: rgba(98, 91, 113, 0.1);
+}
+
+.sidebar-buttons .button:selected,
+.sidebar-buttons .button:focused {
     -fx-background-color: white;
-    -fx-padding: 20px;
-    -fx-spacing: 10px;
-    -fx-border-radius: 20;
-    -fx-background-radius: 20;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 2, 2);
-    -fx-pref-width: 240px;
+    -fx-text-fill: #1C1B1F;
 }
 
-.card-title {
+/* --- Header --- */
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1B1F;
+}
+
+.header-date {
+    -fx-font-size: 16px;
+    -fx-text-fill: #6c6a6d;
+}
+
+/* --- Card styles --- */
+.image-card-small {
+    -fx-background-color: white;
+    -fx-background-radius: 25;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+.image-card-large{
+    -fx-background-color: white;
+    -fx-background-radius: 25;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+    -fx-min-width: 460;
+}
+
+.streak-card {
+    -fx-background-color: white;
+    -fx-background-radius: 25;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+    -fx-alignment: center;
+    -fx-min-width: 180;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1B1F;
+}
+
+/* Card content */
+.card-text-h3 {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
-.card-text {
+.card-text-p {
     -fx-font-size: 14px;
-    -fx-text-fill: #49454f;
+    -fx-text-fill: #49454F;
+    -fx-max-width: 200;
 }
+

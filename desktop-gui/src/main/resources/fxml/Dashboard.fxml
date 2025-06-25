@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.DashboardController"
+            styleClass="dashboard-root">
+
+    <VBox spacing="20" layoutX="40" layoutY="40">
+        <Label fx:id="welcomeLabel" styleClass="dashboard-heading"/>
+        <Label fx:id="dateLabel" styleClass="dashboard-subtext"/>
+
+        <HBox spacing="30">
+            <VBox styleClass="dashboard-card" spacing="10">
+                <Label text="It’s Training Time" styleClass="card-title"/>
+                <Label fx:id="trainingText" wrapText="true" styleClass="card-text"/>
+                <Button text="Start Today’s Session" styleClass="button-purple" onAction="#startTraining"/>
+            </VBox>
+
+            <VBox styleClass="dashboard-card" spacing="10">
+                <Label fx:id="streakLabel" styleClass="card-title"/>
+                <Label text="Keep doing great" styleClass="card-text"/>
+                <HBox spacing="6">
+                    <!-- Пример дней -->
+                    <Label text="M" styleClass="card-text"/>
+                    <Label text="T" styleClass="card-text"/>
+                    <Label text="W" styleClass="card-text"/>
+                    <Label text="T" styleClass="card-text"/>
+                    <Label text="F" styleClass="card-text"/>
+                    <Label text="S" styleClass="card-text"/>
+                    <Label text="S" styleClass="card-text"/>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <Label text="Choose training" styleClass="dashboard-heading"/>
+
+        <HBox spacing="30">
+            <VBox styleClass="dashboard-card" spacing="10">
+                <Label text="Vision" styleClass="card-title"/>
+                <Label text="Focus tracking and reaction speed" styleClass="card-text"/>
+                <Button text="Start" styleClass="button-purple" onAction="#startVision"/>
+            </VBox>
+
+            <VBox styleClass="dashboard-card" spacing="10">
+                <Label text="Hearing" styleClass="card-title"/>
+                <Label text="Tone recognition and precision" styleClass="card-text"/>
+                <Button text="Start" styleClass="button-orange" onAction="#startHearing"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

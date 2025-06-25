@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Objects;
 
 public class LoginController {
 
@@ -30,12 +31,28 @@ public class LoginController {
     @FXML
     public void initialize() {
         try {
-            Image logoImage = new Image(getClass().getResourceAsStream("/images/logo/sb_logo_with_white_bg.png"));
+            Image logoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo/sb_logo_with_white_bg.png")));
             logo.setImage(logoImage);
-            Image img = new Image(getClass().getResourceAsStream("/images/girl/girl_jumping.png"));
+            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/girl/girl_jumping.png")));
             illustration.setImage(img);
         } catch (Exception e) {
             System.err.println("Error loading image: " + e.getMessage());
+        }
+    }
+    private void goToDashboard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 1300, 900);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
+
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            root.requestFocus();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -54,7 +71,6 @@ public class LoginController {
         }
 
         try {
-            // JSON tělo
             String json = String.format("{\"email\":\"%s\", \"password\":\"%s\"}", email, password);
 
             HttpRequest request = HttpRequest.newBuilder()
@@ -93,7 +109,7 @@ public class LoginController {
             Parent root = loader.load();
 
             Scene scene = new Scene(root, 1300, 900);
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);

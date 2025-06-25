@@ -23,14 +23,12 @@ public class RegisterController {
     public VBox leftPane;
     public Button registerButton;
     public TextField usernameField;
-    public PasswordField confirmPasswordField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
 
-    @FXML private Label nameError;
     @FXML private Label emailError;
     @FXML private Label passwordError;
-    @FXML private Label confirmPasswordError;
+    @FXML private Label usernameError;
 
 
     @FXML private ImageView logo;
@@ -45,11 +43,37 @@ public class RegisterController {
         illustration.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/girl/girl_registration.png"))));
     }
 
+    private void showSuccessAndRedirectToLogin() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Registration Successful");
+        alert.setHeaderText(null);
+        alert.setContentText("Account created successfully.\nPlease log in to continue.");
+        alert.showAndWait();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) registerButton.getScene().getWindow();
+
+            Scene scene = new Scene(root, 1300, 900);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
+
+            stage.setScene(scene);
+            stage.setResizable(false);
+            root.requestFocus();
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleRegister() {
         String username = usernameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+        usernameError.setText("");
         emailError.setText("");
         passwordError.setText("");
 
@@ -74,7 +98,7 @@ public class RegisterController {
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                goToLogin();
+                showSuccessAndRedirectToLogin();
             } else {
                 emailError.setText("Registration failed");
             }
@@ -84,12 +108,6 @@ public class RegisterController {
             emailError.setText("Error occurred");
         }
     }
-    private void clearErrors() {
-        nameError.setText("");
-        emailError.setText("");
-        passwordError.setText("");
-        confirmPasswordError.setText("");
-    }
 
     @FXML
     private void goToLogin() {
@@ -98,7 +116,7 @@ public class RegisterController {
             Parent root = loader.load();
 
             Scene scene = new Scene(root, 1300, 900);
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
 
             Stage stage = (Stage) registerButton.getScene().getWindow();
             stage.setScene(scene);

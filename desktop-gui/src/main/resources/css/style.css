@@ -1,0 +1,73 @@
+.auth-page {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #8e54e9cc, #ffb199cc);
+    -fx-alignment: center;
+}
+
+.auth-left {
+    -fx-background-color: rgba(255,255,255,0.8);
+    -fx-padding: 50 40 40 40;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+    -fx-border-radius: 16;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 4);
+}
+
+.heading {
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}
+
+.auth-subtitle {
+    -fx-font-size: 14;
+    -fx-text-fill: #625B71;
+}
+
+.button-purple {
+    -fx-pref-height: 45;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 14;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-background-color: #7b3ff2;
+    -fx-padding: 10 14 10 14;
+
+}
+
+.button-purple:hover {
+    -fx-background-color: #6b34d4;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-font-size: 14;
+    -fx-border-color: transparent;
+}
+
+.input-error-text {
+    -fx-font-size: 12;
+    -fx-text-fill: #900B09;
+}
+
+.link {
+    -fx-font-size: 14;
+    -fx-text-fill: #7b3ff2;
+    -fx-alignment: center-right;
+    -fx-padding: 10;
+}
+
+.or-text {
+    -fx-text-fill: #625B71;
+    -fx-font-size: 14;
+}
+
+.social-login {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}

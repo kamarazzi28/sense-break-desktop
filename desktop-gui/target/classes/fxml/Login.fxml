@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.LoginController"
+            styleClass="auth-page">
+
+    <HBox alignment="CENTER" spacing="100" AnchorPane.topAnchor="30" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="30">
+
+    <!-- Left block -->
+        <VBox alignment="CENTER" spacing="10"
+              prefWidth="400" styleClass="auth-left"
+              prefHeight="600"
+              minHeight="600"
+              maxHeight="600">
+            <ImageView fx:id="logo" fitWidth="60" fitHeight="60" preserveRatio="true"/>
+            <Label text="Hello again!" styleClass="heading"/>
+            <Label text="Daily practice makes perfect — keep going!" styleClass="auth-subtitle"/>
+
+            <VBox spacing="10" maxWidth="280">
+                <TextField fx:id="emailField" styleClass="text-field"  promptText="Enter your email"/>
+                <Label fx:id="emailError" styleClass="input-error-text"/>
+
+                <PasswordField fx:id="passwordField" styleClass="password-field" promptText="Password"/>
+                <Label fx:id="passwordError" styleClass="input-error-text"/>
+
+                <HBox alignment="CENTER_RIGHT">
+                    <Hyperlink fx:id="recoveryLink" text="Recovery password" styleClass="link"/>
+                </HBox>
+
+                <Button fx:id="loginButton" text="Login" maxWidth="Infinity" styleClass="button-purple" onAction="#handleLogin"/>
+            </VBox>
+            <Label text="Not a member yet?" styleClass="or-text"/>
+            <Hyperlink text="Register now" styleClass="link" onAction="#goToRegister"/>
+        </VBox>
+
+        <!-- Right block -->
+        <VBox fx:id="rightPane" alignment="CENTER" prefWidth="400">
+            <ImageView fx:id="illustration" fitWidth="400" preserveRatio="true"/>
+        </VBox>
+
+    </HBox>
+
+</AnchorPane>

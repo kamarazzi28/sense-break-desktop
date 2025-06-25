@@ -1,4 +1,4 @@
-# Sense Break (Vision & Hearing Trainer Microservices Application)
+# Sense Break (Vision & Hearing Trainer)
 
 ## Projekt pro předmět B6B36NSS – Návrh softwarových systémů
 
@@ -77,7 +77,7 @@ Projekt bude klást důraz na:
 
 ---
 
-## ⚙️ Setup projektu (bez Dockeru)
+## ⚙️ Setup projektu
 
 1. **Naklonuj repozitář:**
    ```bash
@@ -105,19 +105,19 @@ Projekt bude klást důraz na:
 
 ### 🟢 Krátkodobé úkoly
 - [x] Zvolit název projektu a nastavit GitLab
-- [x] Definovat cíle projektu a architekturu (modulární backend + mikroslužba)
+- [x] Definovat cíle projektu a architekturu 
 - [x] Sepsat funkční a nefunkční požadavky
 - [x] Navrhnout hlavní Use Case scénáře
-- [x] Vytvořit první verze UML diagramů (Use Case, Class, Component, Sequence)
+- [x] Vytvořit první verze UML diagramů
 - [x] Připravit prezentaci pro Milník 1
 - [x] Vytvořit adresářovou strukturu a inicializační soubory pro backend, GUI a notifikace
 - [x] Navrhnout základní REST API pro User modul a Training modul
-- [x] Spustit PostgreSQL a Kafka, připravit schéma tabulek
+- [x] Spustit PostgreSQL
 
 ### 🧩 Dlouhodobé úkoly
-- [ ] Implementovat User modul (registrace, přihlášení, profil)
-- [ ] Implementovat Training modul (spuštění tréninku, uložení výsledků)
-- [ ] Integrovat Auth Middleware (ověření tokenu, role)
+- [x] Implementovat User modul (registrace, přihlášení, profil)
+- [x] Implementovat Training modul (spuštění tréninku, uložení výsledků)
+- [x] Integrovat Auth Middleware (ověření tokenu, role)
 - [ ] Implementovat Notification Service (Kafka listener, odesílání notifikací)
 - [ ] Navrhnout a vytvořit JavaFX GUI (volba cvičení, zobrazení výsledků)
 - [ ] Propojit REST komunikaci mezi GUI a backendem

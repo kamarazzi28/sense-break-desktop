@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox fx:id="sidebar"
+      fx:controller="sensebreak.gui.controller.SidebarController"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10" styleClass="sidebar" prefWidth="250">
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <ImageView fx:id="logo" fitWidth="40" fitHeight="40"/>
+        <Label text="Sense Break" styleClass="sidebar-title"/>
+    </HBox>
+
+    <VBox spacing="10" styleClass="sidebar-buttons">
+        <Button fx:id="dashboardBtn" maxWidth="Infinity" text="Dashboard"/>
+        <Button fx:id="visionBtn" maxWidth="Infinity" text="Vision"/>
+        <Button fx:id="hearingBtn" maxWidth="Infinity" text="Hearing"/>
+        <Button fx:id="progressBtn" maxWidth="Infinity" text="Progress"/>
+        <Button fx:id="notificationsBtn" maxWidth="Infinity" text="Notifications"/>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS"/>
+    <VBox spacing="10" styleClass="sidebar-buttons">
+        <Button fx:id="settingsBtn" maxWidth="Infinity" text="Settings"/>
+        <Button fx:id="logoutBtn" maxWidth="Infinity" text="Log out" style="-fx-text-fill:#B3261E"/>
+    </VBox>
+</VBox>

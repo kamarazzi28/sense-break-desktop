@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import sensebreak.gui.Router;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,16 +24,23 @@ public class RegisterController {
     public VBox leftPane;
     public Button registerButton;
     public TextField usernameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
 
-    @FXML private Label emailError;
-    @FXML private Label passwordError;
-    @FXML private Label usernameError;
+    @FXML
+    private Label emailError;
+    @FXML
+    private Label passwordError;
+    @FXML
+    private Label usernameError;
 
 
-    @FXML private ImageView logo;
-    @FXML private ImageView illustration;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private ImageView illustration;
 
     public RegisterController() {
     }
@@ -111,21 +119,8 @@ public class RegisterController {
 
     @FXML
     private void goToLogin() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root, 1300, 900);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
-
-            Stage stage = (Stage) registerButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sense Break — Register");
-            stage.setResizable(false);
-            root.requestFocus();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+        Router.switchScene(stage, "/fxml/Login.fxml", "Sense Break — Login");
     }
 
 

@@ -1,9 +1,6 @@
 package sensebreak.gui;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -11,23 +8,17 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-            Scene scene = new Scene(root, 1300, 900);
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo/sb_logo.png")));
-
-
-            primaryStage.setTitle("Sense Break");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            root.requestFocus();
+            Router.init(stage);
+            Router.switchScene(stage, "/fxml/Login.fxml", "Sense Break — Login");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo/sb_logo.png")));
+            stage.setTitle("Sense Break");
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);

@@ -1,7 +1,6 @@
 package sensebreak.gui.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,31 +19,23 @@ import java.util.UUID;
 
 public class DashboardController {
 
-    @FXML private Label greetingLabel;
-    @FXML private Label dateLabel;
+    @FXML
+    private Label greetingLabel;
+    @FXML
+    private Label dateLabel;
 
-    @FXML private VBox visionCard;
-    @FXML private VBox hearingCard;
+    @FXML
+    private VBox visionCard;
+    @FXML
+    private VBox hearingCard;
 
-    @FXML private ImageView logo;
-    @FXML private ImageView fireIcon;
-    @FXML private ImageView girlImage;
+    @FXML
+    private ImageView fireIcon;
+    @FXML
+    private ImageView girlImage;
 
-    @FXML private VBox navButtons;
-    @FXML private VBox settingsSection;
-    @FXML private VBox mainContent;
-
-    @FXML private Button dashboardBtn;
-    @FXML private Button visionBtn;
-    @FXML private Button hearingBtn;
-    @FXML private Button progressBtn;
-    @FXML private Button notificationsBtn;
-    @FXML private Button settingsBtn;
-
-    @FXML private Button startTrainingBtn;
-    @FXML private Label streakTitle;
-    @FXML private Button visionStartBtn;
-    @FXML private Button hearingStartBtn;
+    @FXML
+    private Label streakTitle;
 
     @FXML
     public void initialize() {
@@ -55,7 +46,6 @@ public class DashboardController {
             username = "User";
         } else if (email.contains("@")) {
             username = email.substring(0, email.indexOf("@"));
-            // Capitalize first letter
             username = username.substring(0, 1).toUpperCase() + username.substring(1);
         } else {
             username = email;
@@ -63,11 +53,6 @@ public class DashboardController {
 
         greetingLabel.setText(getGreeting() + ", " + username + "!");
         dateLabel.setText("Today is " + getFormattedDate());
-
-        InputStream logoStream = getClass().getResourceAsStream("/images/logo/sb_logo.png");
-        if (logoStream != null) {
-            logo.setImage(new Image(logoStream));
-        }
 
         InputStream fireStream = getClass().getResourceAsStream("/images/figures/fire.png");
         if (fireStream != null && fireIcon != null) {
@@ -86,7 +71,6 @@ public class DashboardController {
         } else {
             streakTitle.setText("error");
         }
-
     }
 
     private int fetchCurrentStreak(UUID userId) {
@@ -95,7 +79,6 @@ public class DashboardController {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
-            // 🔒 ДОБАВЬ токен авторизации
             String token = AuthSession.getToken();
             conn.setRequestProperty("Authorization", "Bearer " + token);
 
@@ -113,8 +96,6 @@ public class DashboardController {
         }
         return 0;
     }
-
-
 
     private String getGreeting() {
         int hour = LocalDate.now().atStartOfDay().getHour();
@@ -135,12 +116,10 @@ public class DashboardController {
     @FXML
     private void startVisionTraining() {
         System.out.println("Start Vision Training");
-        // TODO: přepnout na Vision tréninkovou stránku
     }
 
     @FXML
     private void startHearingTraining() {
         System.out.println("Start Hearing Training");
-        // TODO: přepnout na Hearing tréninkovou stránku
     }
 }

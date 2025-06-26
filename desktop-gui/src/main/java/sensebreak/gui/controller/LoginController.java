@@ -1,17 +1,14 @@
 package sensebreak.gui.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import sensebreak.gui.AuthSession;
+import sensebreak.gui.Router;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -21,13 +18,20 @@ import java.util.UUID;
 
 public class LoginController {
 
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private Label emailError;
-    @FXML private Label passwordError;
-    @FXML private Button loginButton;
-    @FXML private ImageView illustration;
-    @FXML private ImageView logo;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Label emailError;
+    @FXML
+    private Label passwordError;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private ImageView illustration;
+    @FXML
+    private ImageView logo;
 
     @FXML
     public void initialize() {
@@ -40,22 +44,12 @@ public class LoginController {
             System.err.println("Error loading image: " + e.getMessage());
         }
     }
-    private void goToDashboard() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root, 1300, 900);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
 
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            root.requestFocus();
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void goToDashboard() {
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        Router.switchScene(stage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard");
     }
+
 
     @FXML
     private void handleLogin() {
@@ -96,8 +90,7 @@ public class LoginController {
                 AuthSession.setUsername(username);
 
                 goToDashboard();
-            }
-            else {
+            } else {
                 emailError.setText("Invalid email or password");
                 passwordError.setText("Invalid email or password");
             }
@@ -109,22 +102,7 @@ public class LoginController {
 
     @FXML
     private void goToRegister() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root, 1300, 900);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
-
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sense Break — Register");
-            stage.setResizable(false);
-            root.requestFocus();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        Router.switchScene(stage, "/fxml/Register.fxml", "Sense Break — Register");
     }
-
-
 }

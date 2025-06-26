@@ -17,6 +17,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Objects;
+import java.util.UUID;
 
 public class LoginController {
 
@@ -87,11 +88,16 @@ public class LoginController {
                 JSONObject user = obj.getJSONObject("user");
                 String username = user.getString("username");
 
+                String idString = user.getString("id");
+                UUID userId = UUID.fromString(idString);
+                AuthSession.setUserId(userId);
+
                 AuthSession.setToken(token);
                 AuthSession.setUsername(username);
 
                 goToDashboard();
-            } else {
+            }
+            else {
                 emailError.setText("Invalid email or password");
                 passwordError.setText("Invalid email or password");
             }
@@ -100,7 +106,6 @@ public class LoginController {
             emailError.setText("Server error");
         }
     }
-
 
     @FXML
     private void goToRegister() {

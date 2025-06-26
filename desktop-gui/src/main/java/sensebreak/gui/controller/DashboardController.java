@@ -8,10 +8,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import sensebreak.gui.AuthSession;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.UUID;
 
 public class DashboardController {
 
@@ -43,9 +48,17 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        String username = AuthSession.getUsername();
-        if (username == null || username.isEmpty()) {
+        String email = AuthSession.getUsername();
+        String username;
+
+        if (email == null || email.isEmpty()) {
             username = "User";
+        } else if (email.contains("@")) {
+            username = email.substring(0, email.indexOf("@"));
+            // Capitalize first letter
+            username = username.substring(0, 1).toUpperCase() + username.substring(1);
+        } else {
+            username = email;
         }
 
         greetingLabel.setText(getGreeting() + ", " + username + "!");
@@ -65,7 +78,43 @@ public class DashboardController {
         if (girlStream != null && girlImage != null) {
             girlImage.setImage(new Image(girlStream));
         }
+
+        UUID userId = AuthSession.getUserId();
+        if (userId != null) {
+            int streak = fetchCurrentStreak(userId);
+            streakTitle.setText(streak + "-day streak!");
+        } else {
+            streakTitle.setText("error");
+        }
+
     }
+
+    private int fetchCurrentStreak(UUID userId) {
+        try {
+            URL url = new URL("http://localhost:8080/api/progress/streak?userId=" + userId);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            // 🔒 ДОБАВЬ токен авторизации
+            String token = AuthSession.getToken();
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+
+            if (conn.getResponseCode() == 200) {
+                try (BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(conn.getInputStream()))) {
+                    String response = reader.readLine();
+                    return Integer.parseInt(response);
+                }
+            } else {
+                System.err.println("Failed to fetch streak: " + conn.getResponseCode());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
 
     private String getGreeting() {
         int hour = LocalDate.now().atStartOfDay().getHour();

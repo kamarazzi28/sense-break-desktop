@@ -81,16 +81,7 @@
     -fx-font-size: 14;
 }
 
-
-
-
-
-
-
-
-
-
-
+/* --- DASHBOARD --- */
 
 .root {
     -fx-background-color: linear-gradient(to bottom, #e4cfff, #ffd8c3);
@@ -157,7 +148,7 @@
     -fx-padding: 20px;
     -fx-spacing: 15px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
-    -fx-min-width: 460;
+    -fx-min-width: 440;
 }
 
 .streak-card {

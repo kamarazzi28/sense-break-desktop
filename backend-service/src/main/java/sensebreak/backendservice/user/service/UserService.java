@@ -12,9 +12,7 @@ import sensebreak.backendservice.user.entity.UserProgress;
 import sensebreak.backendservice.user.repository.UserProgressRepository;
 import sensebreak.backendservice.user.repository.UserRepository;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -52,24 +50,6 @@ public class UserService {
                 .id(saved.getId())
                 .username(saved.getUsername())
                 .email(saved.getEmail())
-                .build();
-    }
-
-    public UserResponse login(UserLoginRequest request) {
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
-
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("Invalid email or password");
-        }
-
-        user.setLastLogin(Instant.now());
-        userRepository.save(user);
-
-        return UserResponse.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .email(user.getEmail())
                 .build();
     }
 

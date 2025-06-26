@@ -8,6 +8,7 @@ import sensebreak.backendservice.user.entity.UserProgress;
 import sensebreak.backendservice.user.repository.UserProgressRepository;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -58,6 +59,14 @@ public class UserProgressService {
 
     }
 
+    public int getCurrentStreak(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(p -> {
+                    updateStreakIfNeeded(p);
+                    return p.getStreakCurrent();
+                })
+                .orElse(0);
+    }
 
     public void addRelaxationMinutes(User user, int minutes) {
         UserProgress progress = progressRepository.findById(user.getId())

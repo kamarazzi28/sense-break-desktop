@@ -58,7 +58,7 @@
 
                     <VBox spacing="20" styleClass="streak-card">
                         <ImageView fx:id="fireIcon" fitWidth="50" fitHeight="60"/>
-                        <Label fx:id="streakTitle" text="0-day streak!" styleClass="card-text-h3"/>
+                        <Label fx:id="streakTitle" styleClass="card-text-h3"/>
                     </VBox>
                 </HBox>
 

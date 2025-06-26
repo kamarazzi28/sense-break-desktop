@@ -1,4 +1,6 @@
 sensebreak\gui\AuthSession.class
+sensebreak\gui\controller\HearingController.class
+sensebreak\gui\controller\VisionController.class
 sensebreak\gui\controller\DashboardController.class
 sensebreak\gui\controller\LoginController.class
 sensebreak\gui\controller\RegisterController.class

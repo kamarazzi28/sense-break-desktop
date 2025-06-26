@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.Vision"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.VisionController">
+    <center>
+        <HBox spacing="30" style="-fx-padding: 40;">
+            <!-- SIDEBAR -->
+            <fx:include source="Sidebar.fxml"/>
+            <!-- MAIN CONTENT -->
+            <VBox spacing="30">
+                <VBox>
+                    <Label text="Pick your training for today" styleClass="section-title"/>
+                    <Label text="Short exercises that help reduce eye strain and keep your vision sharp. Choose one or try them all – it only takes a few minutes."
+                           wrapText="true" styleClass="text-p"/>
+                </VBox>
 
-</AnchorPane>
+                <HBox spacing="20">
+                    <VBox.margin>
+                        <Insets top="10"/>
+                    </VBox.margin>
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Tracking Dot" styleClass="card-text-h3"/>
+                        <Label text="Follow the moving dot across the screen" wrapText="true" styleClass="card-text-p"/>
+                        <Label text="~45 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="trackingDotBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                    </VBox>
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Blinking Prompt" styleClass="card-text-h3"/>
+                        <Label text="Blink when prompted to relax eye muscles" wrapText="true"
+                               styleClass="card-text-p"/>
+                        <Label text="~30 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="blinkingPromptBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                    </VBox>
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Focus Shift" styleClass="card-text-h3"/>
+                        <Label text="Switch focus between near and far objects" wrapText="true"
+                               styleClass="card-text-p"/>
+                        <Label text="~40 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="visionStartBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

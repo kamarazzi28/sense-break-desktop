@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import sensebreak.gui.AuthSession;
+import sensebreak.gui.Router;
+
+import javafx.scene.control.Button;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,19 +26,16 @@ public class DashboardController {
     private Label greetingLabel;
     @FXML
     private Label dateLabel;
-
-    @FXML
-    private VBox visionCard;
-    @FXML
-    private VBox hearingCard;
-
     @FXML
     private ImageView fireIcon;
     @FXML
     private ImageView girlImage;
-
     @FXML
     private Label streakTitle;
+    @FXML
+    private Button visionBtn;
+    @FXML
+    private Button hearingBtn;
 
     @FXML
     public void initialize() {
@@ -115,11 +115,13 @@ public class DashboardController {
 
     @FXML
     private void startVisionTraining() {
-        System.out.println("Start Vision Training");
+        Stage stage = (Stage) visionBtn.getScene().getWindow();
+        Router.switchScene(stage, "/fxml/Vision.fxml", "Sense Break — Vision", "vision");
     }
 
     @FXML
     private void startHearingTraining() {
-        System.out.println("Start Hearing Training");
+        Stage stage = (Stage) hearingBtn.getScene().getWindow();
+        Router.switchScene(stage, "/fxml/Hearing.fxml", "Sense Break — Hearing", "hearing");
     }
 }

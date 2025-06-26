@@ -47,7 +47,7 @@ public class LoginController {
 
     private void goToDashboard() {
         Stage stage = (Stage) loginButton.getScene().getWindow();
-        Router.switchScene(stage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard");
+        Router.switchScene(stage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard", "dashboard");
     }
 
 

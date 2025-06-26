@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -11,8 +12,10 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             Router.init(stage);
-            Router.switchScene(stage, "/fxml/Login.fxml", "Sense Break — Login");
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/logo/sb_logo.png")));
+
+            Router.switchScene(stage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard", "dashboard");
+
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo/sb_logo.png"))));
             stage.setTitle("Sense Break");
             stage.show();
         } catch (Exception e) {

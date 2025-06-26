@@ -1,6 +1,5 @@
 package sensebreak.gui.controller;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -38,8 +37,6 @@ public class SidebarController {
         Image logoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo/sb_logo.png")));
         logo.setImage(logoImage);
 
-        Platform.runLater(() -> dashboardBtn.requestFocus());
-
         dashboardBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Dashboard.fxml", "Sense Break — Dashboard"));
         visionBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Vision.fxml", "Sense Break — Vision"));
         hearingBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Hearing.fxml", "Sense Break — Hearing"));
@@ -74,8 +71,6 @@ public class SidebarController {
                 AuthSession.setUsername(null);
                 AuthSession.setUserId(null);
                 Router.switchScene(getStage(), "/fxml/Login.fxml", "Sense Break — Login");
-            } else {
-                Platform.runLater(() -> dashboardBtn.requestFocus());
             }
         });
     }

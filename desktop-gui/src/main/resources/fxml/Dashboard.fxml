@@ -6,12 +6,10 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="sensebreak.gui.controller.DashboardController">
-
     <center>
         <HBox spacing="30" style="-fx-padding: 40;">
             <!-- SIDEBAR -->
             <fx:include source="Sidebar.fxml"/>
-
             <!-- MAIN CONTENT -->
             <VBox spacing="30">
                 <VBox>
@@ -23,7 +21,6 @@
                     <VBox.margin>
                         <Insets top="10"/>
                     </VBox.margin>
-
                     <StackPane styleClass="image-card-large" maxHeight="180" prefHeight="180" minHeight="180">
                         <VBox spacing="10">
                             <Label text="It’s Training Time" styleClass="card-text-h3"/>
@@ -32,7 +29,6 @@
                             <Button fx:id="startTrainingBtn" text="Start Today’s Session" maxWidth="200"
                                     styleClass="button-purple"/>
                         </VBox>
-
                         <ImageView fx:id="girlImage"
                                    fitHeight="230"
                                    preserveRatio="true"
@@ -52,12 +48,13 @@
                     <VBox spacing="10" styleClass="image-card-small">
                         <Label text="Vision" styleClass="card-text-h3"/>
                         <Label text="Focus tracking and reaction speed" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="visionStartBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                        <Button fx:id="visionBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"
+                                onAction="#startVisionTraining"/>
                     </VBox>
                     <VBox spacing="10" styleClass="image-card-small">
                         <Label text="Hearing" styleClass="card-text-h3"/>
                         <Label text="Improve tone recognition and precision" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="hearingStartBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                        <Button fx:id="hearingBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
                     </VBox>
                 </HBox>
             </VBox>

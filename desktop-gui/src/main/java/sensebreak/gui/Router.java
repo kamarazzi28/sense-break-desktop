@@ -10,13 +10,19 @@ import java.util.Objects;
 
 public class Router {
     private static Stage primaryStage;
+    private static String currentPageId;
 
     public static void init(Stage stage) {
         primaryStage = stage;
     }
 
-    public static void switchScene(Stage stage, String fxmlPath, String title) {
+    public static Stage getStage() {
+        return primaryStage;
+    }
+
+    public static void switchScene(Stage stage, String fxmlPath, String title, String pageId) {
         try {
+            currentPageId = pageId;
             FXMLLoader loader = new FXMLLoader(Router.class.getResource(fxmlPath));
             Parent root = loader.load();
             Scene scene = new Scene(root, 1300, 900);
@@ -26,17 +32,14 @@ public class Router {
             stage.setTitle(title);
             stage.setResizable(false);
             stage.show();
+
             root.requestFocus();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void switchScene(String fxmlPath, String title) {
-        switchScene(primaryStage, fxmlPath, title);
-    }
-
-    public static Stage getStage() {
-        return primaryStage;
+    public static void switchScene(Stage stage, String fxmlPath, String title) {
+        switchScene(stage, fxmlPath, title, null);
     }
 }

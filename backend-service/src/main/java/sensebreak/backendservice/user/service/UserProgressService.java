@@ -135,4 +135,26 @@ public class UserProgressService {
                 .relaxationMinutes(0)
                 .build();
     }
+
+    public void updateReminderSettings(UUID userId, boolean enabled, int intervalMinutes) {
+        UserProgress progress = progressRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        progress.setRemindersEnabled(enabled);
+        progress.setReminderIntervalMinutes(intervalMinutes);
+        progressRepository.save(progress);
+    }
+
+    public boolean isReminderEnabled(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(UserProgress::isRemindersEnabled)
+                .orElse(false);
+    }
+
+    public int getReminderInterval(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(UserProgress::getReminderIntervalMinutes)
+                .orElse(60);
+    }
+
 }

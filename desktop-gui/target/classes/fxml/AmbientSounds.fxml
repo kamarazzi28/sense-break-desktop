@@ -24,7 +24,7 @@
                         <ImageView fx:id="birdsImage" fitHeight="180" fitWidth="300" styleClass="ambient-image"/>
                         <HBox spacing="10" styleClass="ambient-card-bottom">
                             <VBox spacing="5" styleClass="ambient-info">
-                                <Label text="Birdsong Morning" styleClass="card-text-h3"/>
+                                <Label text="Birdsong Morning" styleClass="smaller-title"/>
                                 <Label text="Calm morning with birds chirping around you." wrapText="true"
                                        styleClass="card-text-p"/>
                                 <Label fx:id="birdsTimer" styleClass="time-counter" visible="false"/>
@@ -38,7 +38,7 @@
                         <ImageView fx:id="rainImage" fitHeight="180" fitWidth="300" styleClass="ambient-image"/>
                         <HBox spacing="10" styleClass="ambient-card-bottom">
                             <VBox spacing="5" styleClass="ambient-info">
-                                <Label text="Forest Rain" styleClass="card-text-h3"/>
+                                <Label text="Forest Rain" styleClass="smaller-title"/>
                                 <Label text="Gentle rain falling through a quiet forest." wrapText="true"
                                        styleClass="card-text-p"/>
                                 <Label fx:id="rainTimer" styleClass="time-counter" visible="false"/>
@@ -52,7 +52,7 @@
                         <ImageView fx:id="oceanImage" fitHeight="180" fitWidth="300" styleClass="ambient-image"/>
                         <HBox spacing="10" styleClass="ambient-card-bottom">
                             <VBox spacing="5" styleClass="ambient-info">
-                                <Label text="Ocean Waves" styleClass="card-text-h3"/>
+                                <Label text="Ocean Waves" styleClass="smaller-title"/>
                                 <Label text="Soothing sounds of waves crashing ashore." wrapText="true"
                                        styleClass="card-text-p"/>
                                 <Label fx:id="oceanTimer" styleClass="time-counter" visible="false"/>

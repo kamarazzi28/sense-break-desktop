@@ -5,7 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import sensebreak.backendservice.training.entity.TrainingType;
+import sensebreak.backendservice.user.dto.ReminderSettings;
 import sensebreak.backendservice.user.entity.User;
+import sensebreak.backendservice.user.entity.UserProgress;
+import sensebreak.backendservice.user.repository.UserProgressRepository;
 import sensebreak.backendservice.user.repository.UserRepository;
 import sensebreak.backendservice.user.service.UserProgressService;
 
@@ -18,6 +21,7 @@ public class UserProgressController {
 
     private final UserProgressService progressService;
     private final UserRepository userRepository;
+    private final UserProgressRepository progressRepository;
 
     @GetMapping("/streak")
     public ResponseEntity<Integer> getCurrentStreak(@RequestParam UUID userId) {
@@ -71,4 +75,25 @@ public class UserProgressController {
         progressService.onTrainingFinished(user, type);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/reminders")
+    public ResponseEntity<ReminderSettings> getReminderSettings(@RequestParam UUID userId) {
+        UserProgress progress = progressRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User progress not found"));
+
+        ReminderSettings dto = new ReminderSettings();
+        dto.setRemindersEnabled(progress.isRemindersEnabled());
+        dto.setReminderIntervalMinutes(progress.getReminderIntervalMinutes());
+        return ResponseEntity.ok(dto);
+    }
+
+    @PutMapping("/reminders")
+    public ResponseEntity<Void> updateReminderSettings(
+            @RequestParam UUID userId,
+            @RequestBody ReminderSettings settings
+    ) {
+        progressService.updateReminderSettings(userId, settings.isRemindersEnabled(), settings.getReminderIntervalMinutes());
+        return ResponseEntity.ok().build();
+    }
+
 }

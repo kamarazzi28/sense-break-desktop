@@ -41,5 +41,11 @@ public class UserProgress {
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int totalTrainings;
 
+    @Column(nullable = false)
+    private boolean remindersEnabled = false;
 
+    @Column(nullable = false)
+    private int reminderIntervalMinutes = 60;
+
+    private java.time.LocalDateTime lastReminderSent;
 }

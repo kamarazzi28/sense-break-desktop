@@ -55,6 +55,22 @@
     -fx-background-color: #e8951b;
 }
 
+.button-teal {
+    -fx-pref-height: 45;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 14;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-background-color: #45A19E;
+    -fx-padding: 10 14 10 14;
+}
+
+.button-teal:hover {
+    -fx-background-color: #3d8f8c;
+}
+
 .text-field, .password-field {
     -fx-background-color: #ffffff;
     -fx-border-radius: 8;
@@ -188,9 +204,75 @@
     -fx-max-width: 500;
 }
 
+.text-p1 {
+    -fx-font-size: 14px;
+    -fx-text-fill: #49454F;
+    -fx-max-width: 250;
+}
+
 .active-button {
     -fx-background-color: white;
     -fx-text-fill: #1C1B1F;
     -fx-font-weight: bold;
 }
+
+/* Внутренний ряд с карточками */
+.stats-row {
+    -fx-spacing: 20px;
+}
+
+/* Карточка стандартная */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 10;
+    -fx-min-width: 150;
+    -fx-min-height: 150;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 10, 0, 0, 4);
+}
+
+/* Широкая карточка */
+.stat-card-wide {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 10;
+    -fx-min-width: 400;
+    -fx-min-height: 150;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 10, 0, 0, 4);
+}
+
+.stat-card-medium {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 10;
+    -fx-min-width: 235;
+    -fx-min-height: 150;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 10, 0, 0, 4);
+}
+
+/* Стиль значения */
+.value {
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1C1B1F;
+}
+
+/* Стиль широкой статистики (Current Streak, Longest Streak) */
+.stat-wide-card {
+    -fx-padding: 10;
+    -fx-min-width: 200;
+    -fx-min-height: 100;
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+.progress-label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #49454F;
+    -fx-padding: 0 0 20 0;
+}
+
 

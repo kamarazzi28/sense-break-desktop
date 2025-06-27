@@ -2,46 +2,68 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-
 <?import javafx.geometry.Insets?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="sensebreak.gui.controller.HearingController">
     <center>
         <HBox spacing="30" style="-fx-padding: 40;">
             <!-- SIDEBAR -->
             <fx:include source="Sidebar.fxml"/>
+
             <!-- MAIN CONTENT -->
             <VBox spacing="30">
                 <VBox spacing="10">
                     <Label text="Pick your training for today" styleClass="section-title"/>
-                    <Label text="Take a moment to reset with calming audio exercises. Headphones are recommended for the best experience."
+                    <Label text="Take a moment to reset with calming audio exercises.&#10;Headphones are recommended for the best experience."
                            wrapText="true" styleClass="text-p"/>
                 </VBox>
+
+                <HBox spacing="20">
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Sound Level Guess" styleClass="card-text-h3"/>
+                        <Label text="Listen to short sounds and guess which one is louder." wrapText="true"
+                               styleClass="card-text-p"/>
+                        <Label text="~30–45 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="soundLevelBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                    </VBox>
+
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Sound Detection" styleClass="card-text-h3"/>
+                        <Label text="Identify where the sound is coming from." wrapText="true"
+                               styleClass="card-text-p"/>
+                        <Label text="~30–60 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="soundDetectBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                    </VBox>
+
+                    <VBox spacing="10" styleClass="image-card-small">
+                        <Label text="Tone Matching" styleClass="card-text-h3"/>
+                        <Label text="Compare sounds and match their pitch." wrapText="true" styleClass="card-text-p"/>
+                        <Label text="~60–120 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="toneMatchBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                    </VBox>
+                </HBox>
 
                 <HBox spacing="20">
                     <VBox.margin>
                         <Insets top="10"/>
                     </VBox.margin>
-                    <VBox spacing="10" styleClass="image-card-small">
-                        <Label text="Tracking Dot" styleClass="card-text-h3"/>
-                        <Label text="Follow the moving dot across the screen" wrapText="true" styleClass="card-text-p"/>
-                        <Label text="~45 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="trackingDotBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
-                    </VBox>
-                    <VBox spacing="10" styleClass="image-card-small">
-                        <Label text="Blinking Prompt" styleClass="card-text-h3"/>
-                        <Label text="Blink when prompted to relax eye muscles" wrapText="true"
-                               styleClass="card-text-p"/>
-                        <Label text="~30 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="blinkingPromptBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
-                    </VBox>
-                    <VBox spacing="10" styleClass="image-card-small">
-                        <Label text="Focus Shift" styleClass="card-text-h3"/>
-                        <Label text="Switch focus between near and far objects" wrapText="true"
-                               styleClass="card-text-p"/>
-                        <Label text="~40 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="visionStartBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
-                    </VBox>
+                    <StackPane styleClass="image-card-large" maxWidth="500" minWidth="500" prefWidth="500"
+                               minHeight="210"
+                               maxHeight="210" prefHeight="210">
+                        <VBox spacing="15">
+                            <Label text="Ambient Noise Session" styleClass="card-text-h3"/>
+                            <Label text="Take a break with calming sounds.&#10;Use headphones for a deeper experience."
+                                   wrapText="true" styleClass="text-p1"/>
+                            <Button fx:id="startAmbientBtn" text="Start Today’s Session"
+                                    maxWidth="250" styleClass="button-teal"/>
+                        </VBox>
+                        <ImageView fx:id="girlImage"
+                                   fitHeight="225"
+                                   preserveRatio="true"
+                                   StackPane.alignment="BOTTOM_RIGHT"
+                                   style="-fx-translate-y: 20; -fx-translate-x: 40;"/>
+                    </StackPane>
                 </HBox>
             </VBox>
         </HBox>

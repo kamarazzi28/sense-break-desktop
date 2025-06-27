@@ -22,7 +22,6 @@
 
     <Region VBox.vgrow="ALWAYS"/>
     <VBox spacing="10" styleClass="sidebar-buttons">
-        <Button fx:id="settingsBtn" maxWidth="Infinity" text="Settings"/>
         <Button fx:id="logoutBtn" maxWidth="Infinity" text="Log out" style="-fx-text-fill:#B3261E"/>
     </VBox>
 </VBox>

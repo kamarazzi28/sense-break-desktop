@@ -12,9 +12,9 @@
             <fx:include source="Sidebar.fxml"/>
             <!-- MAIN CONTENT -->
             <VBox spacing="30">
-                <VBox>
+                <VBox spacing="10">
                     <Label text="Pick your training for today" styleClass="section-title"/>
-                    <Label text="Short exercises that help reduce eye strain and keep your vision sharp. Choose one or try them all – it only takes a few minutes."
+                    <Label text="Short exercises that help reduce eye strain and keep your vision sharp.&#10;Choose one or try them all – it only takes a few minutes."
                            wrapText="true" styleClass="text-p"/>
                 </VBox>
 

@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.Progress"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<?import javafx.scene.control.Label?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.ProgressController">
+    <center>
+        <HBox spacing="30" style="-fx-padding: 40;">
+            <!-- SIDEBAR -->
+            <fx:include source="Sidebar.fxml"/>
+            <VBox spacing="30">
+                <VBox spacing="10">
+                    <Label text="Your Progress" styleClass="section-title"/>
+                    <Label text="Great job staying consistent!&#10;Keep going and turn your short sessions into a healthy daily habit."
+                           wrapText="true" styleClass="text-p"/>
+                </VBox>
+                <VBox spacing="20">
+                    <HBox spacing="20">
+                        <VBox styleClass="stat-card">
+                            <Label text="Total sessions" styleClass="progress-label"/>
+                            <Label fx:id="totalTrainings" styleClass="section-title"/>
+                        </VBox>
+                        <VBox styleClass="stat-card">
+                            <Label text="Vision sessions" styleClass="progress-label"/>
+                            <Label fx:id="visionTrainings" styleClass="section-title"/>
+                        </VBox>
+                        <VBox styleClass="stat-card">
+                            <Label text="Hearing sessions" styleClass="progress-label"/>
+                            <Label fx:id="hearingTrainings" styleClass="section-title"/>
+                        </VBox>
+                    </HBox>
+                    <VBox styleClass="stat-card-wide">
+                        <Label text="Relaxation Time" styleClass="progress-label"/>
+                        <Label fx:id="relaxationMinutes" styleClass="section-title"/>
+                    </VBox>
+                    <HBox spacing="20">
+                        <VBox styleClass="stat-card-medium">
+                            <Label text="Current Streak" styleClass="progress-label"/>
+                            <Label fx:id="currentStreak" styleClass="section-title"/>
+                        </VBox>
+                        <VBox styleClass="stat-card-medium">
+                            <Label text="Longest Streak" styleClass="progress-label"/>
+                            <Label fx:id="longestStreak" styleClass="section-title"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

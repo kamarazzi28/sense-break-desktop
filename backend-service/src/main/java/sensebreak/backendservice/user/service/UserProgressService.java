@@ -68,12 +68,45 @@ public class UserProgressService {
                 .orElse(0);
     }
 
+    public int getLongestStreak(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(p -> {
+                    updateStreakIfNeeded(p);
+                    return p.getStreakLongest();
+                })
+                .orElse(0);
+    }
+
+    public int getHearingTrainings(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(UserProgress::getHearingTrainings)
+                .orElse(0);
+    }
+
+    public int getVisionTrainings(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(UserProgress::getVisionTrainings)
+                .orElse(0);
+    }
+
+    public int getTotalTrainings(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(UserProgress::getTotalTrainings)
+                .orElse(0);
+    }
+
     public void addRelaxationMinutes(User user, int minutes) {
         UserProgress progress = progressRepository.findById(user.getId())
                 .orElseGet(() -> createNewProgress(user));
 
         progress.setRelaxationMinutes(progress.getRelaxationMinutes() + minutes);
         progressRepository.save(progress);
+    }
+
+    public int getRelaxationMinutes(UUID userId) {
+        return progressRepository.findById(userId)
+                .map(UserProgress::getRelaxationMinutes)
+                .orElse(0);
     }
 
     private UserProgress createNewProgress(User user) {

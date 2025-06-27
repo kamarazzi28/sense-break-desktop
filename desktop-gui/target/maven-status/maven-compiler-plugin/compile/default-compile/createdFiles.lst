@@ -1,4 +1,3 @@
-sensebreak\gui\controller\SettingsController.class
 sensebreak\gui\AuthSession.class
 sensebreak\gui\Router.class
 sensebreak\gui\controller\HearingController.class
@@ -9,3 +8,4 @@ sensebreak\gui\controller\RegisterController.class
 sensebreak\gui\controller\ProgressController.class
 sensebreak\gui\controller\SidebarController.class
 sensebreak\gui\Main.class
+sensebreak\gui\controller\NotificationsController.class

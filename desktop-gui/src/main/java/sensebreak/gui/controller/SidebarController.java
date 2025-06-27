@@ -28,8 +28,6 @@ public class SidebarController {
     @FXML
     private Button notificationsBtn;
     @FXML
-    private Button settingsBtn;
-    @FXML
     private Button logoutBtn;
 
     @FXML
@@ -42,7 +40,6 @@ public class SidebarController {
         hearingBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Hearing.fxml", "Sense Break — Hearing"));
         progressBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Progress.fxml", "Sense Break — Progress"));
         notificationsBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Notifications.fxml", "Sense Break — Notifications"));
-        settingsBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Settings.fxml", "Sense Break — Settings"));
 
         logoutBtn.setOnAction(e -> handleLogout());
     }

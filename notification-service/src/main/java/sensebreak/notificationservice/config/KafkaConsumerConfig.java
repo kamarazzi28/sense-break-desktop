@@ -14,10 +14,19 @@ import sensebreak.notificationservice.model.NotificationMessage;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Configuration class for Kafka consumer settings in the Notification Service.
+ * Sets up deserialization and consumer factory for processing {@link NotificationMessage} messages.
+ */
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
 
+    /**
+     * Creates a Kafka {@link ConsumerFactory} configured to deserialize {@link NotificationMessage} objects.
+     *
+     * @return a configured ConsumerFactory for NotificationMessage
+     */
     @Bean
     public ConsumerFactory<String, NotificationMessage> consumerFactory() {
         JsonDeserializer<NotificationMessage> deserializer = new JsonDeserializer<>(NotificationMessage.class);
@@ -34,6 +43,11 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), deserializer);
     }
 
+    /**
+     * Configures a Kafka listener container factory for {@link NotificationMessage}.
+     *
+     * @return the listener container factory
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, NotificationMessage> notificationKafkaListenerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, NotificationMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();

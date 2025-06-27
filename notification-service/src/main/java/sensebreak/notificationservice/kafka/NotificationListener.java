@@ -7,6 +7,10 @@ import sensebreak.notificationservice.model.NotificationMessage;
 import sensebreak.notificationservice.service.NotificationCacheService;
 import sensebreak.notificationservice.service.NotificationLogService;
 
+/**
+ * Kafka listener component that processes incoming notification messages.
+ * On receiving a message, it logs the notification and caches it in Redis.
+ */
 @Component
 @RequiredArgsConstructor
 public class NotificationListener {
@@ -14,6 +18,12 @@ public class NotificationListener {
     private final NotificationLogService logService;
     private final NotificationCacheService cacheService;
 
+    /**
+     * Listens for messages on the "notifications" Kafka topic.
+     * Processes each {@link NotificationMessage} by logging and caching it.
+     *
+     * @param message the notification message received from Kafka
+     */
     @KafkaListener(
             topics = "notifications",
             groupId = "notification-group",
@@ -25,5 +35,4 @@ public class NotificationListener {
         logService.save(message);
         cacheService.cacheNotification(message);
     }
-
 }

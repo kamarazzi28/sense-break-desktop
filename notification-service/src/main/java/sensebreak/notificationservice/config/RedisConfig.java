@@ -13,15 +13,24 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.*;
 import sensebreak.notificationservice.model.NotificationMessage;
 
+/**
+ * Configuration class for Redis integration in the Notification Service.
+ * Defines a RedisTemplate for storing and retrieving {@link NotificationMessage} objects.
+ */
 @Configuration
 public class RedisConfig {
 
+    /**
+     * Configures a {@link RedisTemplate} for handling {@link NotificationMessage} objects as values.
+     *
+     * @param factory the Redis connection factory
+     * @return a configured RedisTemplate
+     */
     @Bean
     public RedisTemplate<String, NotificationMessage> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, NotificationMessage> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
 
-        // Новый ObjectMapper с поддержкой типов
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         mapper.activateDefaultTyping(

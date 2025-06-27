@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
-
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="sensebreak.gui.controller.NotificationsController">
+
     <center>
         <HBox spacing="30" style="-fx-padding: 40;">
             <!-- SIDEBAR -->
             <fx:include source="Sidebar.fxml"/>
+            <!-- MAIN CONTENT -->
+            <VBox spacing="30">
+                <VBox spacing="10">
+                    <Label text="Notifications" styleClass="section-title"/>
+                </VBox>
+
+                <VBox style="-fx-background-color: rgba(255,255,255,0.3); -fx-background-radius: 16; -fx-padding: 20;"
+                      spacing="16">
+
+                    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="feature-card-large">
+                        <VBox spacing="4">
+                            <Label text="Enable Desktop Notifications" styleClass="smaller-title"/>
+                            <Label text="Get friendly reminders to take eye breaks or start a new session"
+                                   styleClass="text-p"/>
+                        </VBox>
+                        <Pane HBox.hgrow="ALWAYS"/>
+                        <ToggleButton fx:id="toggleNotifications" styleClass="custom-toggle">
+                            <graphic>
+                                <StackPane fx:id="thumb" styleClass="thumb"/>
+                            </graphic>
+                        </ToggleButton>
+
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="feature-card-large">
+                        <VBox spacing="4">
+                            <Label text="Set Reminder" styleClass="smaller-title"/>
+                            <Label text="Choose how often you'd like to be reminded during the day"
+                                   styleClass="text-p"/>
+                        </VBox>
+                        <Pane HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="reminderCombo" prefWidth="180" styleClass="combo-box">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Every 30 min"/>
+                                    <String fx:value="Every hour"/>
+                                    <String fx:value="Every 3 hours"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+                </VBox>
+            </VBox>
         </HBox>
     </center>
 </BorderPane>

@@ -2,6 +2,8 @@ package sensebreak.backendservice.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import sensebreak.backendservice.kafka.NotificationProducer;
+import sensebreak.backendservice.model.NotificationMessage;
 import sensebreak.backendservice.training.entity.TrainingType;
 import sensebreak.backendservice.user.entity.User;
 import sensebreak.backendservice.user.entity.UserProgress;
@@ -15,6 +17,7 @@ import java.util.UUID;
 public class UserProgressService {
 
     private final UserProgressRepository progressRepository;
+    private final NotificationProducer notificationProducer;
 
     private void updateStreakIfNeeded(UserProgress progress) {
         LocalDate today = LocalDate.now();
@@ -24,7 +27,16 @@ public class UserProgressService {
             if (lastActive != null && lastActive.equals(today.minusDays(1))) {
                 progress.setStreakCurrent(progress.getStreakCurrent() + 1);
             } else {
+                int previousStreak = progress.getStreakCurrent();
                 progress.setStreakCurrent(1);
+
+                if (previousStreak > 1) {
+                    notificationProducer.sendNotification(new NotificationMessage(
+                            progress.getUser().getId().toString(),
+                            "STREAK_LOST",
+                            "You missed your training yesterday. Streak has been reset."
+                    ));
+                }
             }
 
             if (progress.getStreakCurrent() > progress.getStreakLongest()) {
@@ -57,6 +69,11 @@ public class UserProgressService {
 
         progressRepository.save(progress);
 
+        notificationProducer.sendNotification(new NotificationMessage(
+                user.getId().toString(),
+                "TRAINING_COMPLETED",
+                "You successfully completed your training!"
+        ));
     }
 
     public int getCurrentStreak(UUID userId) {

@@ -57,7 +57,7 @@ Projekt bude klást důraz na:
 ## ✨ Funkcionality
 
 - Registrace a přihlášení uživatelů
-- Spuštění tréninkových cvičení (sledování bodu, poslouchání tónů)
+- Spuštění tréninkových cvičení (sledování bodu)
 - Vyhodnocení a uložení výsledků
 - Přehled historie a pokroku uživatele
 - Notifikace připomínající trénink
@@ -86,7 +86,7 @@ Projekt bude klást důraz na:
    ```
 2. **Spusť hlavní backend (modulární monolit):**
    ```bash
-   cd backend service
+   cd backend-service
    mvn spring-boot:run
    ```
 3. **Spusť notifikační mikroslužbu:**
@@ -118,13 +118,10 @@ Projekt bude klást důraz na:
 - [x] Implementovat User modul (registrace, přihlášení, profil)
 - [x] Implementovat Training modul (spuštění tréninku, uložení výsledků)
 - [x] Integrovat Auth Middleware (ověření tokenu, role)
-- [ ] Implementovat Notification Service (Kafka listener, odesílání notifikací)
-- [ ] Navrhnout a vytvořit JavaFX GUI (volba cvičení, zobrazení výsledků)
-- [ ] Propojit REST komunikaci mezi GUI a backendem
-- [ ] Pokrýt API testy (unit + integrační)
-- [ ] Dokončit dokumentaci, aktualizovat diagramy a README
-- [ ] Připravit finální prezentaci a odevzdání projektu
-
+- [x] Implementovat Notification Service (Kafka listener, odesílání notifikací)
+- [x] Navrhnout a vytvořit JavaFX GUI (volba cvičení, zobrazení výsledků)
+- [x] Propojit REST komunikaci mezi GUI a backendem
+- [x] Dokončit dokumentaci, aktualizovat diagramy a README
 
 ---
 

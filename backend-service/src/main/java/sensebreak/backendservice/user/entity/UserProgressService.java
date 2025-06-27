@@ -1,4 +1,4 @@
-package sensebreak.backendservice.user.service;
+package sensebreak.backendservice.user.entity;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

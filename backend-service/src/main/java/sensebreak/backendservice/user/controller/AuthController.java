@@ -14,6 +14,10 @@ import sensebreak.backendservice.user.service.UserService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controller responsible for handling user authentication-related requests,
+ * including registration and login.
+ */
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -22,12 +26,24 @@ public class AuthController {
     private final UserService userService;
     private final JwtService jwtService;
 
+    /**
+     * Registers a new user with the provided registration data.
+     *
+     * @param request the user registration request containing username, email, and password
+     * @return the registered user information
+     */
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRegisterRequest request) {
         UserResponse response = userService.register(request);
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * Authenticates the user and returns a JWT token and user data if login is valid.
+     *
+     * @param request the login request containing email and password
+     * @return a map containing the JWT token and user details
+     */
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@Valid @RequestBody UserLoginRequest request) {
         User user = userService.validateLogin(request);
@@ -44,6 +60,4 @@ public class AuthController {
 
         return ResponseEntity.ok(response);
     }
-
-
 }

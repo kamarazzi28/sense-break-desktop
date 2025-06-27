@@ -16,6 +16,10 @@ import sensebreak.backendservice.user.repository.UserRepository;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * A filter that checks for a JWT token in the Authorization header,
+ * validates it, and sets the authenticated user in the security context.
+ */
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -23,6 +27,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserRepository userRepository;
 
+    /**
+     * Filters each incoming HTTP request to extract and validate a JWT token.
+     * If the token is valid and the user exists, authentication is set in the security context.
+     *
+     * @param request     the incoming HTTP request
+     * @param response    the HTTP response
+     * @param filterChain the filter chain
+     * @throws ServletException in case of a servlet error
+     * @throws IOException      in case of an I/O error
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,

@@ -18,6 +18,9 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for handling training session operations.
+ */
 @RestController
 @RequestMapping("/api/training")
 @RequiredArgsConstructor
@@ -28,7 +31,13 @@ public class TrainingController {
     private final TrainingSessionRepository sessionRepository;
     private final UserProgressService progressService;
 
-
+    /**
+     * Starts a new training session for the authenticated user.
+     *
+     * @param type the type of training (VISION or HEARING)
+     * @param user the authenticated user
+     * @return the created training session
+     */
     @PostMapping("/start")
     public ResponseEntity<TrainingSession> start(
             @RequestParam("type") TrainingType type,
@@ -38,6 +47,12 @@ public class TrainingController {
         return ResponseEntity.ok(session);
     }
 
+    /**
+     * Ends a training session by ID and updates progress.
+     *
+     * @param id the UUID of the training session
+     * @return HTTP 200 if ended successfully
+     */
     @PostMapping("/end/{id}")
     public ResponseEntity<Void> end(@PathVariable("id") UUID id) {
         TrainingSession session = sessionRepository.findById(id)
@@ -51,6 +66,13 @@ public class TrainingController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Adds relaxation time in minutes for the authenticated user.
+     *
+     * @param minutes the number of minutes to add
+     * @param user    the authenticated user
+     * @return HTTP 200 if added successfully
+     */
     @PostMapping("/relax")
     public ResponseEntity<Void> addRelaxationMinutes(
             @RequestParam int minutes,
@@ -60,6 +82,11 @@ public class TrainingController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Retrieves the currently authenticated user from security context.
+     *
+     * @return the authenticated User entity
+     */
     private User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName(); // email from JWT token
@@ -67,6 +94,11 @@ public class TrainingController {
                 .orElseThrow(() -> new RuntimeException("User not found: " + email));
     }
 
+    /**
+     * Returns a list of all training sessions for the current user.
+     *
+     * @return list of training sessions
+     */
     @GetMapping("/history")
     public ResponseEntity<List<TrainingSession>> history() {
         User user = getCurrentUser();

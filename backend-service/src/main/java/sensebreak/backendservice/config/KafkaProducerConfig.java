@@ -11,9 +11,18 @@ import sensebreak.backendservice.model.NotificationMessage;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Configuration class for Kafka producer.
+ * Sets up the necessary beans to produce messages to a Kafka topic.
+ */
 @Configuration
 public class KafkaProducerConfig {
 
+    /**
+     * Creates a ProducerFactory for producing {@link NotificationMessage} objects.
+     *
+     * @return a configured ProducerFactory
+     */
     @Bean
     public ProducerFactory<String, NotificationMessage> producerFactory() {
         Map<String, Object> config = new HashMap<>();
@@ -23,6 +32,11 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(config);
     }
 
+    /**
+     * Creates a KafkaTemplate for sending {@link NotificationMessage} objects.
+     *
+     * @return a configured KafkaTemplate
+     */
     @Bean
     public KafkaTemplate<String, NotificationMessage> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());

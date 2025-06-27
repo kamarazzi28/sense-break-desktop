@@ -38,8 +38,6 @@ public class TrainingController {
         return ResponseEntity.ok(session);
     }
 
-//TODO: не сохранять тренировки в бд если они меньше чем таймер
-
     @PostMapping("/end/{id}")
     public ResponseEntity<Void> end(@PathVariable("id") UUID id) {
         TrainingSession session = sessionRepository.findById(id)
@@ -52,7 +50,6 @@ public class TrainingController {
 
         return ResponseEntity.ok().build();
     }
-    //TODO: relaxation minutes
 
     @PostMapping("/relax")
     public ResponseEntity<Void> addRelaxationMinutes(

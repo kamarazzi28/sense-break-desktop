@@ -36,6 +36,8 @@ public class DashboardController {
     private Button visionBtn;
     @FXML
     private Button hearingBtn;
+    @FXML
+    private Button startTrainingBtn;
 
     @FXML
     public void initialize() {
@@ -123,5 +125,11 @@ public class DashboardController {
     private void startHearingTraining() {
         Stage stage = (Stage) hearingBtn.getScene().getWindow();
         Router.switchScene(stage, "/fxml/Hearing.fxml", "Sense Break — Hearing");
+    }
+
+    @FXML
+    private void startDailyTraining() {
+        Stage stage = (Stage) startTrainingBtn.getScene().getWindow();
+        Router.switchScene(stage, "/fxml/TrackingDot.fxml", "Sense Break — Tracking Dot");
     }
 }

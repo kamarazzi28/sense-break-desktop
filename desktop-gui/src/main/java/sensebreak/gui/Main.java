@@ -13,7 +13,7 @@ public class Main extends Application {
         try {
             Router.init(stage);
 
-            Router.switchScene(stage, "/fxml/AmbientSounds.fxml", "Sense Break — Dashboard");
+            Router.switchScene(stage, "/fxml/TrackingDot.fxml", "Sense Break — Dashboard");
 
             stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo/sb_logo.png"))));
             stage.setTitle("Sense Break");

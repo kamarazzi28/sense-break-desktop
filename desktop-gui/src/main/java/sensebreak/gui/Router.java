@@ -42,4 +42,8 @@ public class Router {
     public static void switchScene(Stage stage, String fxmlPath, String title) {
         switchScene(stage, fxmlPath, title, null);
     }
+
+    public static void goBack() {
+        switchScene(primaryStage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard");
+    }
 }

@@ -25,7 +25,7 @@
                         <Label text="Listen to short sounds and guess which one is louder." wrapText="true"
                                styleClass="card-text-p"/>
                         <Label text="~30–45 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="soundLevelBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                        <Button text="Start" maxWidth="Infinity" styleClass="button-orange"/>
                     </VBox>
 
                     <VBox spacing="10" styleClass="image-card-small">
@@ -33,14 +33,14 @@
                         <Label text="Identify where the sound is coming from." wrapText="true"
                                styleClass="card-text-p"/>
                         <Label text="~30–60 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="soundDetectBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                        <Button text="Start" maxWidth="Infinity" styleClass="button-orange"/>
                     </VBox>
 
                     <VBox spacing="10" styleClass="image-card-small">
                         <Label text="Tone Matching" styleClass="card-text-h3"/>
                         <Label text="Compare sounds and match their pitch." wrapText="true" styleClass="card-text-p"/>
                         <Label text="~60–120 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="toneMatchBtn" text="Start" maxWidth="Infinity" styleClass="button-orange"/>
+                        <Button text="Start" maxWidth="Infinity" styleClass="button-orange"/>
                     </VBox>
                 </HBox>
 

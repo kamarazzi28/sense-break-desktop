@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.components.TrainingControlsController"
+            style="-fx-background-color: transparent;">
+
+    <HBox spacing="28"
+          alignment="center"
+          styleClass="training-controls"
+          style="-fx-padding: 12 0 12 0;"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0"
+          AnchorPane.bottomAnchor="20">
+        <Button fx:id="settingsBtn" styleClass="circle-button"/>
+        <Button fx:id="backBtn" styleClass="circle-button"/>
+        <Button fx:id="pauseBtn" styleClass="circle-button"/>
+        <Button fx:id="nextBtn" styleClass="circle-button"/>
+        <Button fx:id="helpBtn" styleClass="circle-button"/>
+    </HBox>
+
+</AnchorPane>

@@ -1,4 +1,4 @@
-package sensebreak.gui.controller;
+package sensebreak.gui.controller.components;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sensebreak.gui.AuthSession;
 import sensebreak.gui.Router;
+import sensebreak.gui.controller.AmbientController;
 
 import java.util.Objects;
 

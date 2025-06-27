@@ -2,7 +2,9 @@ package sensebreak.backendservice.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import sensebreak.backendservice.training.entity.TrainingType;
 import sensebreak.backendservice.user.entity.User;
 import sensebreak.backendservice.user.repository.UserRepository;
 import sensebreak.backendservice.user.service.UserProgressService;
@@ -63,4 +65,10 @@ public class UserProgressController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/finish-training")
+    public ResponseEntity<Void> finishTraining(@RequestParam TrainingType type,
+                                               @AuthenticationPrincipal User user) {
+        progressService.onTrainingFinished(user, type);
+        return ResponseEntity.ok().build();
+    }
 }

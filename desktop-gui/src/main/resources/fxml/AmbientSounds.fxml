@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.AmbientController">
+    <center>
+        <HBox spacing="30" style="-fx-padding: 40;">
+            <!-- SIDEBAR -->
+            <fx:include source="Sidebar.fxml"/>
+
+            <!-- MAIN CONTENT -->
+            <VBox spacing="30">
+                <VBox spacing="10">
+                    <Label text="Escape the noise of the day with soothing nature sounds" styleClass="section-title"/>
+                    <Label text="Press play, close your eyes, and let your mind drift.&#10;Headphones recommended for the full experience."
+                           wrapText="true" styleClass="text-p"/>
+                </VBox>
+
+                <HBox spacing="20">
+                    <!-- BIRD -->
+                    <VBox spacing="10" styleClass="ambient-card">
+                        <ImageView fx:id="birdsImage" fitHeight="180" fitWidth="300" styleClass="ambient-image"/>
+                        <HBox spacing="10" styleClass="ambient-card-bottom">
+                            <VBox spacing="5" styleClass="ambient-info">
+                                <Label text="Birdsong Morning" styleClass="card-text-h3"/>
+                                <Label text="Calm morning with birds chirping around you." wrapText="true"
+                                       styleClass="card-text-p"/>
+                                <Label fx:id="birdsTimer" styleClass="time-counter" visible="false"/>
+                            </VBox>
+                            <Button fx:id="birdsBtn" styleClass="green-icon-button"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- RAIN -->
+                    <VBox spacing="10" styleClass="ambient-card">
+                        <ImageView fx:id="rainImage" fitHeight="180" fitWidth="300" styleClass="ambient-image"/>
+                        <HBox spacing="10" styleClass="ambient-card-bottom">
+                            <VBox spacing="5" styleClass="ambient-info">
+                                <Label text="Forest Rain" styleClass="card-text-h3"/>
+                                <Label text="Gentle rain falling through a quiet forest." wrapText="true"
+                                       styleClass="card-text-p"/>
+                                <Label fx:id="rainTimer" styleClass="time-counter" visible="false"/>
+                            </VBox>
+                            <Button fx:id="rainBtn" styleClass="green-icon-button"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- OCEAN -->
+                    <VBox spacing="10" styleClass="ambient-card">
+                        <ImageView fx:id="oceanImage" fitHeight="180" fitWidth="300" styleClass="ambient-image"/>
+                        <HBox spacing="10" styleClass="ambient-card-bottom">
+                            <VBox spacing="5" styleClass="ambient-info">
+                                <Label text="Ocean Waves" styleClass="card-text-h3"/>
+                                <Label text="Soothing sounds of waves crashing ashore." wrapText="true"
+                                       styleClass="card-text-p"/>
+                                <Label fx:id="oceanTimer" styleClass="time-counter" visible="false"/>
+                            </VBox>
+                            <Button fx:id="oceanBtn" styleClass="green-icon-button"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

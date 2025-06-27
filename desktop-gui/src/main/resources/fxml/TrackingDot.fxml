@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sensebreak.gui.controller.trainings.TrackingDotController"
+            prefWidth="1280" prefHeight="800"
+            styleClass="training-layout">
+
+    <top>
+        <fx:include fx:id="trainingHeaderPane" source="/fxml/TrainingHeader.fxml"/>
+    </top>
+
+    <center>
+        <StackPane style="-fx-background-color: #ffffff; -fx-padding: 20;">
+            <Canvas fx:id="canvas" width="1200" height="700"/>
+        </StackPane>
+    </center>
+    <bottom>
+        <fx:include source="./TrainingControls.fxml" fx:id="controlsInclude"/>
+    </bottom>
+</BorderPane>

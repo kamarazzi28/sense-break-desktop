@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 
 <VBox fx:id="sidebar"
-      fx:controller="sensebreak.gui.controller.SidebarController"
+      fx:controller="sensebreak.gui.controller.components.SidebarController"
       xmlns:fx="http://javafx.com/fxml"
       spacing="10" styleClass="sidebar" prefWidth="250">
     <HBox spacing="20" alignment="CENTER_LEFT">

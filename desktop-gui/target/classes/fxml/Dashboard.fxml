@@ -27,7 +27,7 @@
                             <Label text="Keep going to build a healthy habit!" styleClass="card-text-p"
                                    wrapText="true"/>
                             <Button fx:id="startTrainingBtn" text="Start Today’s Session" maxWidth="200"
-                                    styleClass="button-purple"/>
+                                    styleClass="button-purple" onAction="#startDailyTraining"/>
                         </VBox>
                         <ImageView fx:id="girlImage"
                                    fitHeight="230"

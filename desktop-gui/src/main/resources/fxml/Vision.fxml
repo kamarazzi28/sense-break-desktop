@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
 
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
@@ -25,22 +24,23 @@
                     <VBox spacing="10" styleClass="image-card-small">
                         <Label text="Tracking Dot" styleClass="card-text-h3"/>
                         <Label text="Follow the moving dot across the screen" wrapText="true" styleClass="card-text-p"/>
-                        <Label text="~45 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="trackingDotBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                        <Label text="~60 sec" wrapText="true" styleClass="card-text-p"/>
+                        <Button fx:id="trackingDotBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"
+                                onAction="#stratTrackingDot"/>
                     </VBox>
                     <VBox spacing="10" styleClass="image-card-small">
                         <Label text="Blinking Prompt" styleClass="card-text-h3"/>
                         <Label text="Blink when prompted to relax eye muscles" wrapText="true"
                                styleClass="card-text-p"/>
                         <Label text="~30 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="blinkingPromptBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                        <Button text="Start" maxWidth="Infinity" styleClass="button-purple"/>
                     </VBox>
                     <VBox spacing="10" styleClass="image-card-small">
                         <Label text="Focus Shift" styleClass="card-text-h3"/>
                         <Label text="Switch focus between near and far objects" wrapText="true"
                                styleClass="card-text-p"/>
                         <Label text="~40 sec" wrapText="true" styleClass="card-text-p"/>
-                        <Button fx:id="visionStartBtn" text="Start" maxWidth="Infinity" styleClass="button-purple"/>
+                        <Button text="Start" maxWidth="Infinity" styleClass="button-purple"/>
                     </VBox>
                 </HBox>
             </VBox>

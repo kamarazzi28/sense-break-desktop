@@ -116,12 +116,12 @@ public class DashboardController {
     @FXML
     private void startVisionTraining() {
         Stage stage = (Stage) visionBtn.getScene().getWindow();
-        Router.switchScene(stage, "/fxml/Vision.fxml", "Sense Break — Vision", "vision");
+        Router.switchScene(stage, "/fxml/Vision.fxml", "Sense Break — Vision");
     }
 
     @FXML
     private void startHearingTraining() {
         Stage stage = (Stage) hearingBtn.getScene().getWindow();
-        Router.switchScene(stage, "/fxml/Hearing.fxml", "Sense Break — Hearing", "hearing");
+        Router.switchScene(stage, "/fxml/Hearing.fxml", "Sense Break — Hearing");
     }
 }

@@ -3,6 +3,8 @@ package sensebreak.backendservice.user.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sensebreak.backendservice.user.entity.User;
+import sensebreak.backendservice.user.repository.UserRepository;
 import sensebreak.backendservice.user.service.UserProgressService;
 
 import java.util.UUID;
@@ -13,6 +15,7 @@ import java.util.UUID;
 public class UserProgressController {
 
     private final UserProgressService progressService;
+    private final UserRepository userRepository;
 
     @GetMapping("/streak")
     public ResponseEntity<Integer> getCurrentStreak(@RequestParam UUID userId) {
@@ -49,4 +52,15 @@ public class UserProgressController {
         int streak = progressService.getRelaxationMinutes(userId);
         return ResponseEntity.ok(streak);
     }
+
+    @PostMapping("/relaxation-minutes")
+    public ResponseEntity<Void> addRelaxationMinutes(
+            @RequestParam UUID userId,
+            @RequestParam int minutes
+    ) {
+        User user = userRepository.findById(userId).orElseThrow();
+        progressService.addRelaxationMinutes(user, minutes);
+        return ResponseEntity.ok().build();
+    }
+
 }

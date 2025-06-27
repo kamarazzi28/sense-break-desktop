@@ -56,7 +56,7 @@
                             <Label text="Take a break with calming sounds.&#10;Use headphones for a deeper experience."
                                    wrapText="true" styleClass="text-p1"/>
                             <Button fx:id="startAmbientBtn" text="Start Today’s Session"
-                                    maxWidth="250" styleClass="button-teal"/>
+                                    maxWidth="250" styleClass="button-teal" onAction="#goToAmbient"/>
                         </VBox>
                         <ImageView fx:id="girlImage"
                                    fitHeight="225"

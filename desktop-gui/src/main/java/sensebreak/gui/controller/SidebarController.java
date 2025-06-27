@@ -35,6 +35,8 @@ public class SidebarController {
         Image logoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo/sb_logo.png")));
         logo.setImage(logoImage);
 
+        AmbientController.stopAudioIfPlaying();
+
         dashboardBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Dashboard.fxml", "Sense Break — Dashboard"));
         visionBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Vision.fxml", "Sense Break — Vision"));
         hearingBtn.setOnAction(e -> Router.switchScene(getStage(), "/fxml/Hearing.fxml", "Sense Break — Hearing"));

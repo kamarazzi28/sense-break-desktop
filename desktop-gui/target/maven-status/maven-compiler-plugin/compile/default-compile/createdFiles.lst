@@ -1,6 +1,8 @@
 sensebreak\gui\Router.class
+sensebreak\gui\dto\ReminderSettings.class
 sensebreak\gui\controller\AmbientController.class
 sensebreak\gui\controller\DashboardController.class
+sensebreak\gui\controller\NotificationsController$1.class
 sensebreak\gui\Main.class
 sensebreak\gui\controller\NotificationsController.class
 sensebreak\gui\controller\components\TrainingControlsController.class

@@ -48,4 +48,6 @@ public class UserProgress {
     private int reminderIntervalMinutes = 60;
 
     private java.time.LocalDateTime lastReminderSent;
+
+    
 }

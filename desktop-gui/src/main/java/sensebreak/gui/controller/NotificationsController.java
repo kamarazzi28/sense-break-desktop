@@ -6,12 +6,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 import sensebreak.gui.AuthSession;
 import sensebreak.gui.dto.ReminderSettings;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.net.URI;
+import java.io.OutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,52 +25,85 @@ public class NotificationsController {
     @FXML
     private ComboBox<String> reminderCombo;
 
-    private final RestTemplate restTemplate = new RestTemplate();
     private final String BASE_URL = "http://localhost:8080/api/progress/reminders";
-
+    private final ObjectMapper mapper = new ObjectMapper();
     private Timer reminderTimer;
 
     @FXML
     public void initialize() {
         reminderCombo.getItems().addAll("Every 30 min", "Every hour", "Every 3 hours");
-
-        String url = BASE_URL + "?userId=" + AuthSession.getUserId();
-        ResponseEntity<ReminderSettings> response = restTemplate.getForEntity(URI.create(url), ReminderSettings.class);
-
-        if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-            ReminderSettings settings = response.getBody();
-            toggleNotifications.setSelected(settings.isRemindersEnabled());
-            switch (settings.getReminderIntervalMinutes()) {
-                case 30 -> reminderCombo.setValue("Every 30 min");
-                case 60 -> reminderCombo.setValue("Every hour");
-                case 180 -> reminderCombo.setValue("Every 3 hours");
-                default -> reminderCombo.setValue("Choose Time");
-            }
-        }
-
+        loadSettings();
         toggleNotifications.setOnAction(e -> saveSettings());
         reminderCombo.setOnAction(e -> saveSettings());
+    }
 
-        startReminderTimer();
+    private void loadSettings() {
+        try {
+            URL url = new URL(BASE_URL + "?userId=" + AuthSession.getUserId());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestProperty("Authorization", "Bearer " + AuthSession.getToken());
+
+            conn.setRequestMethod("GET");
+            conn.connect();
+
+            if (conn.getResponseCode() == 200) {
+                InputStream in = conn.getInputStream();
+                ReminderSettings settings = mapper.readValue(in, ReminderSettings.class);
+                toggleNotifications.setSelected(settings.isRemindersEnabled());
+
+                switch (settings.getReminderIntervalMinutes()) {
+                    case 30 -> reminderCombo.setValue("Every 30 min");
+                    case 60 -> reminderCombo.setValue("Every hour");
+                    case 180 -> reminderCombo.setValue("Every 3 hours");
+                    default -> reminderCombo.setValue("Choose Time");
+                }
+
+                startReminderTimer();
+            } else {
+                System.err.println("Failed to load settings: " + conn.getResponseCode());
+            }
+
+            conn.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveSettings() {
-        ReminderSettings updated = new ReminderSettings();
-        updated.setRemindersEnabled(toggleNotifications.isSelected());
+        try {
+            ReminderSettings updated = new ReminderSettings();
+            updated.setRemindersEnabled(toggleNotifications.isSelected());
 
-        String selected = reminderCombo.getValue();
-        if (selected == null) return;
+            String selected = reminderCombo.getValue();
+            if (selected == null) return;
 
-        switch (selected) {
-            case "Every 30 min" -> updated.setReminderIntervalMinutes(30);
-            case "Every hour" -> updated.setReminderIntervalMinutes(60);
-            case "Every 3 hours" -> updated.setReminderIntervalMinutes(180);
+            switch (selected) {
+                case "Every 30 min" -> updated.setReminderIntervalMinutes(30);
+                case "Every hour" -> updated.setReminderIntervalMinutes(60);
+                case "Every 3 hours" -> updated.setReminderIntervalMinutes(180);
+            }
+
+            URL url = new URL(BASE_URL + "?userId=" + AuthSession.getUserId());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestProperty("Authorization", "Bearer " + AuthSession.getToken());
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestMethod("PUT");
+            conn.setDoOutput(true);
+
+            String json = mapper.writeValueAsString(updated);
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(json.getBytes());
+            }
+
+            if (conn.getResponseCode() != 200) {
+                System.err.println("Failed to save settings: " + conn.getResponseCode());
+            }
+
+            conn.disconnect();
+            startReminderTimer();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        String url = BASE_URL + "?userId=" + AuthSession.getUserId();
-        restTemplate.put(URI.create(url), updated);
-
-        startReminderTimer();
     }
 
     private void startReminderTimer() {
@@ -94,7 +129,7 @@ public class NotificationsController {
         reminderTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> showReminder());
+                Platform.runLater(NotificationsController.this::showReminder);
             }
         }, intervalMinutes * 60 * 1000L, intervalMinutes * 60 * 1000L);
     }

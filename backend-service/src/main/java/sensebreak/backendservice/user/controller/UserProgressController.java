@@ -96,4 +96,17 @@ public class UserProgressController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/should-send-reminder")
+    public ResponseEntity<Boolean> shouldSendReminder(@RequestParam UUID userId) {
+        boolean shouldSend = progressService.shouldSendReminder(userId);
+        return ResponseEntity.ok(shouldSend);
+    }
+
+    @PostMapping("/reminder-sent")
+    public ResponseEntity<Void> updateReminderSent(@RequestParam UUID userId) {
+        progressService.updateLastReminderSent(userId);
+        return ResponseEntity.ok().build();
+    }
+
+
 }

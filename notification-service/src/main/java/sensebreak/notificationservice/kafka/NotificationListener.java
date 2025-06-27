@@ -1,14 +1,25 @@
 package sensebreak.notificationservice.kafka;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import sensebreak.notificationservice.model.NotificationMessage;
+import sensebreak.notificationservice.service.NotificationLogService;
 
-@Service
+@Component
+@RequiredArgsConstructor
 public class NotificationListener {
 
-    @KafkaListener(topics = "notifications", groupId = "notification-group", containerFactory = "notificationKafkaListenerFactory")
-    public void listen(NotificationMessage message) {
-        System.out.println("Notification received: " + message.getContent() + " for user " + message.getUserId());
+    private final NotificationLogService logService;
+
+    @KafkaListener(
+            topics = "notifications",
+            groupId = "notification-group",
+            containerFactory = "notificationKafkaListenerFactory"
+    )
+    public void handleNotification(NotificationMessage message) {
+        System.out.println("GOT MESSAGE from Kafka!");
+        System.out.println("Received notification: " + message);
+        logService.save(message);
     }
 }

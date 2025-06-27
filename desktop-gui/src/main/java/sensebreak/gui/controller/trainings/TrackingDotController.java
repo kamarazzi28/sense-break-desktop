@@ -71,7 +71,7 @@ public class TrackingDotController {
         }
         sessionTimer = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateSessionTimer()));
         sessionTimer.setCycleCount(60);
-        sessionTimer.setOnFinished(e -> stopTraining());
+        sessionTimer.setOnFinished(e -> handleTrainingFinished());
         sessionTimer.play();
 
         animationTimer = new Timeline(new KeyFrame(Duration.millis(16), e -> updateAnimation()));

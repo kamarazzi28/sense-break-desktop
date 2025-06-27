@@ -10,6 +10,7 @@ import sensebreak.backendservice.user.entity.UserProgress;
 import sensebreak.backendservice.user.repository.UserProgressRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -145,16 +146,26 @@ public class UserProgressService {
         progressRepository.save(progress);
     }
 
-    public boolean isReminderEnabled(UUID userId) {
+    public boolean shouldSendReminder(UUID userId) {
         return progressRepository.findById(userId)
-                .map(UserProgress::isRemindersEnabled)
+                .map(progress -> {
+                    if (!progress.isRemindersEnabled()) return false;
+
+                    LocalDateTime lastSent = progress.getLastReminderSent();
+                    if (lastSent == null) return true; // ещё не отправлялось
+
+                    int interval = progress.getReminderIntervalMinutes();
+                    return lastSent.plusMinutes(interval).isBefore(LocalDateTime.now());
+                })
                 .orElse(false);
     }
 
-    public int getReminderInterval(UUID userId) {
-        return progressRepository.findById(userId)
-                .map(UserProgress::getReminderIntervalMinutes)
-                .orElse(60);
+    public void updateLastReminderSent(UUID userId) {
+        progressRepository.findById(userId).ifPresent(progress -> {
+            progress.setLastReminderSent(LocalDateTime.now());
+            progressRepository.save(progress);
+        });
     }
+
 
 }

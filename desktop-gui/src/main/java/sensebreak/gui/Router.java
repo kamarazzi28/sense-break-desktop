@@ -8,18 +8,31 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Utility class responsible for handling scene navigation within the JavaFX application.
+ */
 public class Router {
+
     private static Stage primaryStage;
     private static String currentPageId;
 
+    /**
+     * Initializes the primary stage reference for the application.
+     *
+     * @param stage the main application stage
+     */
     public static void init(Stage stage) {
         primaryStage = stage;
     }
 
-    public static Stage getStage() {
-        return primaryStage;
-    }
-
+    /**
+     * Switches to a new scene with the specified FXML path, title, and page ID.
+     *
+     * @param stage    the stage to set the scene on
+     * @param fxmlPath the path to the FXML file
+     * @param title    the window title
+     * @param pageId   optional identifier for the page
+     */
     public static void switchScene(Stage stage, String fxmlPath, String title, String pageId) {
         try {
             currentPageId = pageId;
@@ -39,10 +52,20 @@ public class Router {
         }
     }
 
+    /**
+     * Overloaded method to switch scenes without specifying a page ID.
+     *
+     * @param stage    the stage to set the scene on
+     * @param fxmlPath the path to the FXML file
+     * @param title    the window title
+     */
     public static void switchScene(Stage stage, String fxmlPath, String title) {
         switchScene(stage, fxmlPath, title, null);
     }
 
+    /**
+     * Navigates back to the default dashboard scene.
+     */
     public static void goBack() {
         switchScene(primaryStage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard");
     }

@@ -17,6 +17,10 @@ import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Controller responsible for managing user notification preferences.
+ * Allows users to enable/disable reminders and choose reminder intervals.
+ */
 public class NotificationsController {
 
     @FXML
@@ -29,6 +33,9 @@ public class NotificationsController {
     private final ObjectMapper mapper = new ObjectMapper();
     private Timer reminderTimer;
 
+    /**
+     * Initializes the controller by loading settings and setting up event handlers.
+     */
     @FXML
     public void initialize() {
         reminderCombo.getItems().addAll("Every 30 min", "Every hour", "Every 3 hours");
@@ -37,12 +44,14 @@ public class NotificationsController {
         reminderCombo.setOnAction(e -> saveSettings());
     }
 
+    /**
+     * Loads reminder settings from the backend and updates the UI.
+     */
     private void loadSettings() {
         try {
             URL url = new URL(BASE_URL + "?userId=" + AuthSession.getUserId());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Authorization", "Bearer " + AuthSession.getToken());
-
             conn.setRequestMethod("GET");
             conn.connect();
 
@@ -69,6 +78,9 @@ public class NotificationsController {
         }
     }
 
+    /**
+     * Sends updated reminder settings to the backend.
+     */
     private void saveSettings() {
         try {
             ReminderSettings updated = new ReminderSettings();
@@ -106,6 +118,10 @@ public class NotificationsController {
         }
     }
 
+    /**
+     * Starts a local timer that periodically shows a reminder alert
+     * based on the user's configured interval.
+     */
     private void startReminderTimer() {
         if (reminderTimer != null) {
             reminderTimer.cancel();
@@ -134,6 +150,9 @@ public class NotificationsController {
         }, intervalMinutes * 60 * 1000L, intervalMinutes * 60 * 1000L);
     }
 
+    /**
+     * Displays a popup notification to remind the user to train.
+     */
     private void showReminder() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Reminder");

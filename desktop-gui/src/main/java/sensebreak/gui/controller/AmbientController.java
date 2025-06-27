@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import sensebreak.gui.AuthSession;
@@ -19,7 +18,13 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Controller for handling ambient sound playback in the GUI.
+ * Allows user to play one of three ambient tracks (birds, rain, ocean),
+ * displays a playback timer, and sends relaxation time to the backend.
+ */
 public class AmbientController {
+
     @FXML
     private ImageView birdsImage;
     @FXML
@@ -53,9 +58,11 @@ public class AmbientController {
     private int lastSentMinute = 0;
     public static AmbientController instance;
 
+    /**
+     * Initializes the controller, sets up UI elements and event handlers.
+     */
     public void initialize() {
         instance = this;
-
         setImage(birdsImage, "/images/pics/birds.png");
         setImage(rainImage, "/images/pics/rain.png");
         setImage(oceanImage, "/images/pics/ocean.png");
@@ -109,7 +116,7 @@ public class AmbientController {
             try {
                 Media media = new Media(Objects.requireNonNull(getClass().getResource(filename)).toExternalForm());
                 mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // loop forever
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                 mediaPlayer.play();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -137,6 +144,9 @@ public class AmbientController {
         }
     }
 
+    /**
+     * Static method to stop audio from other parts of the app.
+     */
     public static void stopAudioIfPlaying() {
         if (instance != null) {
             instance.stopAudio();
@@ -184,6 +194,9 @@ public class AmbientController {
         return view;
     }
 
+    /**
+     * Sends 1 minute of relaxation time to the backend for the currently authenticated user.
+     */
     private void sendRelaxationMinute() {
         try {
             UUID userId = AuthSession.getUserId();
@@ -206,5 +219,4 @@ public class AmbientController {
             e.printStackTrace();
         }
     }
-
 }

@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sensebreak.gui.AuthSession;
 import sensebreak.gui.Router;
-
 import javafx.scene.control.Button;
 
 import java.io.BufferedReader;
@@ -20,6 +19,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.UUID;
 
+/**
+ * Controller for the main dashboard screen.
+ * Displays a greeting, current date, current user streak,
+ * and provides access to different training modes.
+ */
 public class DashboardController {
 
     @FXML
@@ -39,6 +43,10 @@ public class DashboardController {
     @FXML
     private Button startTrainingBtn;
 
+    /**
+     * Initializes the dashboard screen with user-specific data:
+     * greeting, date, streak, and UI images.
+     */
     @FXML
     public void initialize() {
         String email = AuthSession.getUsername();
@@ -75,6 +83,12 @@ public class DashboardController {
         }
     }
 
+    /**
+     * Sends a GET request to backend to fetch current streak for the user.
+     *
+     * @param userId ID of the currently logged-in user.
+     * @return integer value representing the current streak.
+     */
     private int fetchCurrentStreak(UUID userId) {
         try {
             URL url = new URL("http://localhost:8080/api/progress/streak?userId=" + userId);
@@ -99,6 +113,11 @@ public class DashboardController {
         return 0;
     }
 
+    /**
+     * Generates a greeting based on the time of day.
+     *
+     * @return greeting string
+     */
     private String getGreeting() {
         int hour = LocalDate.now().atStartOfDay().getHour();
         if (hour >= 5 && hour < 12) {
@@ -110,23 +129,37 @@ public class DashboardController {
         }
     }
 
+    /**
+     * Returns today's date formatted as: "DayOfWeek, Month Day".
+     *
+     * @return formatted date string
+     */
     private String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d", Locale.ENGLISH);
         return formatter.format(LocalDate.now());
     }
 
+    /**
+     * Starts the Vision training scene.
+     */
     @FXML
     private void startVisionTraining() {
         Stage stage = (Stage) visionBtn.getScene().getWindow();
         Router.switchScene(stage, "/fxml/Vision.fxml", "Sense Break — Vision");
     }
 
+    /**
+     * Starts the Hearing training scene.
+     */
     @FXML
     private void startHearingTraining() {
         Stage stage = (Stage) hearingBtn.getScene().getWindow();
         Router.switchScene(stage, "/fxml/Hearing.fxml", "Sense Break — Hearing");
     }
 
+    /**
+     * Starts the daily default training scene.
+     */
     @FXML
     private void startDailyTraining() {
         Stage stage = (Stage) startTrainingBtn.getScene().getWindow();

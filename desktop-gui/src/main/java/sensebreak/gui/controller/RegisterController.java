@@ -19,38 +19,54 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 
+/**
+ * Controller responsible for handling user registration logic and UI.
+ */
 public class RegisterController {
 
     public VBox leftPane;
     public Button registerButton;
     public TextField usernameField;
+
     @FXML
     private TextField emailField;
+
     @FXML
     private PasswordField passwordField;
 
     @FXML
     private Label emailError;
+
     @FXML
     private Label passwordError;
+
     @FXML
     private Label usernameError;
 
-
     @FXML
     private ImageView logo;
+
     @FXML
     private ImageView illustration;
 
+    /**
+     * Default constructor.
+     */
     public RegisterController() {
     }
 
+    /**
+     * Initializes the UI components, loads logo and illustration images.
+     */
     @FXML
     private void initialize() {
         logo.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo/sb_logo_with_white_bg.png"))));
         illustration.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/girl/girl_registration.png"))));
     }
 
+    /**
+     * Shows a success dialog and navigates the user to the login page.
+     */
     private void showSuccessAndRedirectToLogin() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Registration Successful");
@@ -76,6 +92,9 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Handles user registration logic. Sends registration request to backend.
+     */
     @FXML
     private void handleRegister() {
         String username = usernameField.getText();
@@ -117,11 +136,12 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Navigates to the login screen.
+     */
     @FXML
     private void goToLogin() {
         Stage stage = (Stage) registerButton.getScene().getWindow();
         Router.switchScene(stage, "/fxml/Login.fxml", "Sense Break — Login");
     }
-
-
 }

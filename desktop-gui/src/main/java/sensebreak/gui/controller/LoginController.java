@@ -16,6 +16,10 @@ import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Controller responsible for handling user login logic and UI.
+ * Authenticates the user via HTTP request and redirects to the dashboard if successful.
+ */
 public class LoginController {
 
     @FXML
@@ -33,6 +37,9 @@ public class LoginController {
     @FXML
     private ImageView logo;
 
+    /**
+     * Initializes the login page by loading logo and illustration images.
+     */
     @FXML
     public void initialize() {
         try {
@@ -45,12 +52,18 @@ public class LoginController {
         }
     }
 
+    /**
+     * Switches the current scene to the dashboard after successful login.
+     */
     private void goToDashboard() {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         Router.switchScene(stage, "/fxml/Dashboard.fxml", "Sense Break — Dashboard", "dashboard");
     }
 
-
+    /**
+     * Handles login action when the login button is pressed.
+     * Sends login credentials to backend and stores session if successful.
+     */
     @FXML
     private void handleLogin() {
         String email = emailField.getText();
@@ -100,6 +113,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Navigates the user to the registration page.
+     */
     @FXML
     private void goToRegister() {
         Stage stage = (Stage) loginButton.getScene().getWindow();

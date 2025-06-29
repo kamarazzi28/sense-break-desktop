@@ -33,7 +33,6 @@ Projekt bude klást důraz na:
 - **JavaFX** GUI (front-end desktop aplikace)
 - **Kafka** – pro notifikace a asynchronní zpracování
 - **Redis** – cache vrstva pro urychlení přístupu k často čteným datům
-- **GitLab CI/CD** – základní pipeline pro build/test
 
 ---
 
@@ -79,22 +78,22 @@ Projekt bude klást důraz na:
 
 ## ⚙️ Setup projektu
 
-1. **Naklonuj repozitář:**
+1. **Naklonujte repozitář:**
    ```bash
    git clone git@gitlab.fel.cvut.cz:ishmukam/sensebreak.git
    cd sensebreak  
    ```
-2. **Spusť hlavní backend (modulární monolit):**
+2. **Spusťte hlavní backend (modulární monolit):**
    ```bash
    cd backend-service
    mvn spring-boot:run
    ```
-3. **Spusť notifikační mikroslužbu:**
+3. **Spusťte notifikační mikroslužbu:**
    ```bash
    cd notification-service
    mvn spring-boot:run
    ```
-4. **Spusť desktopovou aplikaci (JavaFX):**
+4. **Spusťte desktopovou aplikaci (JavaFX):**
    ```bash
    cd desktop-gui
    mvn javafx:run

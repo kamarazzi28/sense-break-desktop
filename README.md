@@ -49,7 +49,7 @@ Key principles include:
 
 1. **Clone the repository:**
    ```bash
-   git clone 
+   git clone https://github.com/kamarazzi28/sense-break-desktop.git
    cd sensebreak
 2. **Run the backend (modular monolith):**
    ```bash
@@ -140,7 +140,7 @@ Důraz je kladen na:
 
 1. **Naklonujte repozitář:**
    ```bash
-   git clone 
+   git clone https://github.com/kamarazzi28/sense-break-desktop.git
    cd sensebreak  
    ```
 2. **Spusťte hlavní backend (modulární monolit):**

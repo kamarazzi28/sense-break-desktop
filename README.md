@@ -9,7 +9,10 @@ Key principles include:
 - clean design and separation of concerns  
 - use of design patterns (authentication, service communication)  
 - documentation with UML and requirements specifications  
-- scalability and maintainability  
+- scalability and maintainability
+
+## Author
+- Kamilla Ishmukhammedova (@kamarazzi28)
 
 ## Technologies
 - Java 17, Spring Boot (REST services)  
@@ -100,7 +103,10 @@ Důraz je kladen na:
 - čistý návrh a oddělení zodpovědností  
 - použití návrhových vzorů (autentizace, komunikace mezi službami)  
 - dokumentaci pomocí UML a specifikací  
-- rozšiřitelnost a udržovatelnost systému  
+- rozšiřitelnost a udržovatelnost systému
+
+## Autorka
+- Kamilla Ishmukhammedova (@kamarazzi28)
 
 ## Technologie
 - Java 17, Spring Boot (REST služby)  
